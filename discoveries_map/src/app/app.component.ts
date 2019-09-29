@@ -19,9 +19,17 @@ export class AppComponent implements OnInit {
   lng: number = 13.700582;
   zoom: number = 10;
   map: any;
+  markerIcon: any;
 
   constructor(private dataService: DataService) {
     this.listDiscoveries();
+
+    this.markerIcon = {
+      icon: L.icon({
+        iconUrl: "assets/leaflet/images/marker-icon.png",
+        shadowUrl: 'assets/leaflet/images/marker-shadow.png'
+      })
+    };
   }
 
   ngOnInit() {
@@ -38,7 +46,7 @@ export class AppComponent implements OnInit {
 
   showDiscoveries(discoveries: DiscoveryEntity[]) {
     discoveries.forEach(fund => {
-      var marker = L.marker([fund.lat, fund.lon]).addTo(this.map);
+      var marker = L.marker([fund.lat, fund.lon], this.markerIcon).addTo(this.map);
       //marker.bindPopup(this.getCacheDetailsHtml(cache)).openPopup();
     });
   }
