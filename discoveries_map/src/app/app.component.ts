@@ -45,9 +45,13 @@ export class AppComponent implements OnInit {
   }
 
   showDiscoveries(discoveries: DiscoveryEntity[]) {
-    discoveries.forEach(fund => {
-      var marker = L.marker([fund.lat, fund.lon], this.markerIcon).addTo(this.map);
-      //marker.bindPopup(this.getCacheDetailsHtml(cache)).openPopup();
+    discoveries.forEach(discovery => {
+      var marker = L.marker([discovery.lat, discovery.lon], this.markerIcon).addTo(this.map);
+      marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
     });
+  }
+
+  getMarkerPopupHtml(discovery: DiscoveryEntity) {
+    return "Art: " + discovery.art + "<br />" + "(" + discovery.artLatin + ")<br />Datum: " + discovery.datum;
   }
 }
