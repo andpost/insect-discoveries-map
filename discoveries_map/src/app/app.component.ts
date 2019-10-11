@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
   zoom: number = 10;
   map: any;
   markerIcon: any;
+  markerIconGreen: any;
+  beobachter: string;
+  entityMap : Map<string, string> = new Map();
 
   constructor(private dataService: DataService) {
     this.listDiscoveries();
@@ -30,6 +33,14 @@ export class AppComponent implements OnInit {
         shadowUrl: 'assets/leaflet/images/marker-shadow.png'
       })
     };
+    this.markerIconGreen = {
+      icon: L.icon({
+        iconUrl: "assets/leaflet/images/marker-icon-green.png",
+        shadowUrl: 'assets/leaflet/images/marker-shadow.png'
+      })
+    };
+
+    this.entityMap.set("ß", "&szlig;")
   }
 
   ngOnInit() {
@@ -46,12 +57,36 @@ export class AppComponent implements OnInit {
 
   showDiscoveries(discoveries: DiscoveryEntity[]) {
     discoveries.forEach(discovery => {
-      var marker = L.marker([discovery.lat, discovery.lon], this.markerIcon).addTo(this.map);
+      var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
       marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
     });
   }
 
-  getMarkerPopupHtml(discovery: DiscoveryEntity) {
-    return "Art: " + discovery.art + "<br />" + "(" + discovery.artLatin + ")<br />Datum: " + discovery.datum;
+  getMarkerIcon(discovery: DiscoveryEntity) {
+    if (this.beobachter == null) {
+      this.beobachter = discovery.beobachter;
+    }
+    if (this.beobachter != discovery.beobachter) {
+      return this.markerIconGreen;
+    }
+    return this.markerIcon;
   }
+
+  getMarkerPopupHtml(discovery: DiscoveryEntity) {
+    return "<b>" + this.encodeHtmlEntities(discovery.art) + "</b> <i>" + discovery.artLatin + "</i>"
+      + "<br />" + discovery.datum + " - " + discovery.einheit
+      + "<br />Fundort: " + this.encodeHtmlEntities(discovery.fundort)
+      + "<br />Beobachter: " + this.encodeHtmlEntities(discovery.beobachter)
+      + "<br />Anzahl: " + discovery.anzahl;
+  }
+
+  encodeHtmlEntities(stringToEncode: string) {
+    this.entityMap.forEach((value: string, key: string) => {
+      var regex = new RegExp(key, 'g');
+      stringToEncode = stringToEncode.replace(regex, value);
+    });
+    return stringToEncode;
+  }
+
+  
 }
