@@ -1,3 +1,11 @@
-<div id="map">
-  
+<div class="row" style="height: 30px;">
+    <div class="form-group">
+        <label for="sel1">Art ausw&auml;hlen: </label>
+        <select class="form-control" (change)="refreshList($event.target.value)">
+            <option value=""></option>
+            <option *ngFor="let art of artlist" value="{{art}}">{{art}}</option>
+        </select>
+    </div>
+</div>
+<div id="map" style="height: 610px; width:100%">
 </div>

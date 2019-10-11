@@ -15,16 +15,21 @@ declare let L;
 export class AppComponent implements OnInit {
   title = 'Insect discoveries map';
 
-  lat: number = 51.083422;
-  lng: number = 13.700582;
-  zoom: number = 10;
+  lat: number = 50.929444;
+  lng: number = 13.458333;
+  zoom: number = 8;
   map: any;
   markerIcon: any;
   markerIconGreen: any;
   beobachter: string;
   entityMap : Map<string, string> = new Map();
+  shownMarkers = new Array();
+  artlist = [];
+  selectedArt : string;
+  SHOW_ALL : string = "<ALLE>";
 
   constructor(private dataService: DataService) {
+    this.artlist.push(this.SHOW_ALL);
     this.listDiscoveries();
 
     this.markerIcon = {
@@ -56,10 +61,25 @@ export class AppComponent implements OnInit {
   }
 
   showDiscoveries(discoveries: DiscoveryEntity[]) {
+    this.artlist = [];
+    this.artlist.push(this.SHOW_ALL);
+
     discoveries.forEach(discovery => {
-      var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
-      marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+      if (this.selectedArt == null || this.selectedArt == this.SHOW_ALL) {
+        var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
+        marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+        this.shownMarkers.push(marker);
+      } else if (discovery.art == this.selectedArt) {
+        var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
+        marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+        this.shownMarkers.push(marker);
+      }
+      
+      if (!this.artlist.includes(discovery.art)) {
+        this.artlist.push(discovery.art);
+      }
     });
+    this.artlist.sort();
   }
 
   getMarkerIcon(discovery: DiscoveryEntity) {
@@ -86,6 +106,16 @@ export class AppComponent implements OnInit {
       stringToEncode = stringToEncode.replace(regex, value);
     });
     return stringToEncode;
+  }
+
+  refreshList(selectedArt: string) {
+    this.removeMarkers();
+    this.selectedArt = selectedArt;
+    this.listDiscoveries();
+  }
+
+  removeMarkers() {
+    this.shownMarkers.forEach(marker => this.map.removeLayer(marker));
   }
 
   
