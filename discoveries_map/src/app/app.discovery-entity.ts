@@ -3,6 +3,8 @@ export interface DiscoveryEntity {
     artLatin : string;
     
     art : string;
+
+    ordnung : string;
     
     datum: string;
 

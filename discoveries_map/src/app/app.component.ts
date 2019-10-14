@@ -25,11 +25,14 @@ export class AppComponent implements OnInit {
   entityMap : Map<string, string> = new Map();
   shownMarkers = new Array();
   artlist = [];
+  ordnunglist = [];
   selectedArt : string;
+  selectedOrdnung : string;
   SHOW_ALL : string = "<ALLE>";
 
   constructor(private dataService: DataService) {
     this.artlist.push(this.SHOW_ALL);
+    this.ordnunglist.push(this.SHOW_ALL);
     this.listDiscoveries();
 
     this.markerIcon = {
@@ -64,22 +67,59 @@ export class AppComponent implements OnInit {
     this.artlist = [];
     this.artlist.push(this.SHOW_ALL);
 
+    this.ordnunglist = [];
+    this.ordnunglist.push(this.SHOW_ALL);
+
     discoveries.forEach(discovery => {
-      if (this.selectedArt == null || this.selectedArt == this.SHOW_ALL) {
+      if (this.isSelected(this.selectedArt, discovery.art) && this.isSelected(this.selectedOrdnung, discovery.ordnung)) {
         var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
         marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
         this.shownMarkers.push(marker);
-      } else if (discovery.art == this.selectedArt) {
-        var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
-        marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
-        this.shownMarkers.push(marker);
+
+        if (!this.artlist.includes(discovery.art)) {
+          this.artlist.push(discovery.art);
+        }
+        if (!this.ordnunglist.includes(discovery.ordnung)) {
+          this.ordnunglist.push(discovery.ordnung);
+        }
       }
+      /*
+      // nothing selected in UI, show all
+      if (this.isNoSelection(this.selectedArt) && this.isNoSelection(this.selectedOrdnung)) {
+        var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
+        marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+        this.shownMarkers.push(marker);
+      // ordnung is not selected, but art
+      } else if (this.isNoSelection(this.selectedOrdnung)) {
+        if (discovery.art == this.selectedArt) {
+          var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
+          marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+          this.shownMarkers.push(marker);
+        }
+      } else {
+        
+        if (discovery.art == this.selectedArt) {
+          var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
+          marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+          this.shownMarkers.push(marker);
+        }
+      }
+      */
       
-      if (!this.artlist.includes(discovery.art)) {
-        this.artlist.push(discovery.art);
-      }
     });
     this.artlist.sort();
+    this.ordnunglist.sort();
+  }
+
+  isNoSelection(selection : string) : boolean {
+    return selection == null || selection == this.SHOW_ALL;
+  }
+
+  isSelected(selection : string, discovery : string) : boolean {
+    if (selection == null || selection == this.SHOW_ALL || selection == discovery) {
+      return true;
+    }
+    return false;
   }
 
   getMarkerIcon(discovery: DiscoveryEntity) {
@@ -94,6 +134,7 @@ export class AppComponent implements OnInit {
 
   getMarkerPopupHtml(discovery: DiscoveryEntity) {
     return "<b>" + this.encodeHtmlEntities(discovery.art) + "</b> <i>" + discovery.artLatin + "</i>"
+      + "<br />" + discovery.ordnung
       + "<br />" + discovery.datum + " - " + discovery.einheit
       + "<br />Fundort: " + this.encodeHtmlEntities(discovery.fundort)
       + "<br />Beobachter: " + this.encodeHtmlEntities(discovery.beobachter)
@@ -108,9 +149,15 @@ export class AppComponent implements OnInit {
     return stringToEncode;
   }
 
-  refreshList(selectedArt: string) {
+  filterSelectedArt(selectedArt: string) {
     this.removeMarkers();
     this.selectedArt = selectedArt;
+    this.listDiscoveries();
+  }
+
+  filterSelectedOrdnung(selectedOrdnung: string) {
+    this.removeMarkers();
+    this.selectedOrdnung = selectedOrdnung;
     this.listDiscoveries();
   }
 
