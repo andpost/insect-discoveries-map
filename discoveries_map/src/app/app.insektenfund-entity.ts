@@ -19,4 +19,6 @@ export interface DiscoveryEntity {
     einheit: string;
 
     anzahl: number;
+
+    fundPruefung: string;
 }

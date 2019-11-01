@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { DiscoveryEntity } from "./app.discovery-entity";
+import { InsektenFund } from "./app.insektenfund-entity";
 import { DataService } from './app.dataservice';
 declare let L;
 
@@ -13,7 +13,7 @@ declare let L;
 })
 @Injectable()
 export class AppComponent implements OnInit {
-  title = 'Insect discoveries map';
+  title = 'Karte mit Insektenfunden';
 
   lat: number = 50.929444;
   lng: number = 13.458333;
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   markerIcon: any;
   markerIconGreen: any;
   beobachter: string;
-  entityMap : Map<string, string> = new Map();
+  htmlEntityMap : Map<string, string> = new Map();
   shownMarkers = new Array();
   artList = [];
   ordnungList = [];
@@ -33,10 +33,7 @@ export class AppComponent implements OnInit {
   SHOW_ALL : string = "<ALLE>";
 
   constructor(private dataService: DataService) {
-    //this.artList.push(this.SHOW_ALL);
-    //this.ordnungList.push(this.SHOW_ALL);
-    //this.beobachterList.push(this.SHOW_ALL);
-    this.listDiscoveries();
+    this.listInsektenFunde();
 
     this.markerIcon = {
       icon: L.icon({
@@ -51,7 +48,7 @@ export class AppComponent implements OnInit {
       })
     };
 
-    this.entityMap.set("ß", "&szlig;")
+    this.htmlEntityMap.set("ß", "&szlig;")
   }
 
   ngOnInit() {
@@ -62,11 +59,11 @@ export class AppComponent implements OnInit {
     }).addTo(this.map);
   }
 
-  listDiscoveries() {
-    this.dataService.getDiscoveries().subscribe((data: DiscoveryEntity[]) => this.showDiscoveries(data))
+  listInsektenFunde() {
+    this.dataService.getDiscoveries().subscribe((data: InsektenFund[]) => this.showInsektenFundeOnMap(data))
   }
 
-  showDiscoveries(discoveries: DiscoveryEntity[]) {
+  showInsektenFundeOnMap(insektenFunde: InsektenFund[]) {
     this.artList = [];
     this.artList.push(this.SHOW_ALL);
 
@@ -76,22 +73,22 @@ export class AppComponent implements OnInit {
     this.beobachterList = [];
     this.beobachterList.push(this.SHOW_ALL);
 
-    discoveries.forEach(discovery => {
-      if (this.isSelected(this.selectedArt, discovery.art) //
-          && this.isSelected(this.selectedOrdnung, discovery.ordnung) //
-          && this.isSelected(this.selectedBeobachter, discovery.beobachter)) {
-        var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
-        marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
+    insektenFunde.forEach(insekt => {
+      if (this.isSelected(this.selectedArt, insekt.art) //
+          && this.isSelected(this.selectedOrdnung, insekt.ordnung) //
+          && this.isSelected(this.selectedBeobachter, insekt.beobachter)) {
+        var marker = L.marker([insekt.lat, insekt.lon], this.getMarkerIcon(insekt)).addTo(this.map);
+        marker.bindPopup(this.getMarkerPopupHtml(insekt)).openPopup();
         this.shownMarkers.push(marker);
 
-        if (!this.artList.includes(discovery.art)) {
-          this.artList.push(discovery.art);
+        if (!this.artList.includes(insekt.art)) {
+          this.artList.push(insekt.art);
         }
-        if (!this.ordnungList.includes(discovery.ordnung)) {
-          this.ordnungList.push(discovery.ordnung);
+        if (!this.ordnungList.includes(insekt.ordnung)) {
+          this.ordnungList.push(insekt.ordnung);
         }
-        if (!this.beobachterList.includes(discovery.beobachter)) {
-          this.beobachterList.push(discovery.beobachter);
+        if (!this.beobachterList.includes(insekt.beobachter)) {
+          this.beobachterList.push(insekt.beobachter);
         }
       }
       
@@ -105,34 +102,41 @@ export class AppComponent implements OnInit {
     return selection == null || selection == this.SHOW_ALL;
   }
 
-  isSelected(selection : string, discovery : string) : boolean {
-    if (selection == null || selection == this.SHOW_ALL || selection == discovery) {
+  /**
+   * Checks if the stringToCheck value is selected in the UI. Returns also true if this.SHOW_ALL is selected.
+   * 
+   * @param selection Selection in UI.
+   * @param stringToCheck 
+   */
+  isSelected(selection : string, stringToCheck : string) : boolean {
+    if (selection == null || selection == this.SHOW_ALL || selection == stringToCheck) {
       return true;
     }
     return false;
   }
 
-  getMarkerIcon(discovery: DiscoveryEntity) {
+  getMarkerIcon(insekt: InsektenFund) {
     if (this.beobachter == null) {
-      this.beobachter = discovery.beobachter;
+      this.beobachter = insekt.beobachter;
     }
-    if (this.beobachter != discovery.beobachter) {
+    if (this.beobachter != insekt.beobachter) {
       return this.markerIconGreen;
     }
     return this.markerIcon;
   }
 
-  getMarkerPopupHtml(discovery: DiscoveryEntity) {
-    return "<b>" + this.encodeHtmlEntities(discovery.art) + "</b> <i>" + discovery.artLatin + "</i>"
-      + "<br />" + discovery.ordnung
-      + "<br />" + discovery.datum + " - " + discovery.einheit
-      + "<br />Fundort: " + this.encodeHtmlEntities(discovery.fundort)
-      + "<br />Beobachter: " + this.encodeHtmlEntities(discovery.beobachter)
-      + "<br />Anzahl: " + discovery.anzahl;
+  getMarkerPopupHtml(insekt: InsektenFund) {
+    return "<b>" + this.encodeHtmlEntities(insekt.art) + "</b> <i>" + insekt.artLatin + "</i>"
+      + "<br />" + insekt.ordnung
+      + "<br />" + insekt.datum + " - " + insekt.einheit
+      + "<br />Fundort: " + this.encodeHtmlEntities(insekt.fundort)
+      + "<br />Beobachter: " + this.encodeHtmlEntities(insekt.beobachter)
+      + "<br />Anzahl: " + insekt.anzahl
+      + "<br />Fundpr&uuml;fung: " + insekt.fundPruefung;
   }
 
   encodeHtmlEntities(stringToEncode: string) {
-    this.entityMap.forEach((value: string, key: string) => {
+    this.htmlEntityMap.forEach((value: string, key: string) => {
       var regex = new RegExp(key, 'g');
       stringToEncode = stringToEncode.replace(regex, value);
     });
@@ -142,19 +146,19 @@ export class AppComponent implements OnInit {
   filterSelectedArt(selectedArt: string) {
     this.removeMarkers();
     this.selectedArt = selectedArt;
-    this.listDiscoveries();
+    this.listInsektenFunde();
   }
 
   filterSelectedOrdnung(selectedOrdnung: string) {
     this.removeMarkers();
     this.selectedOrdnung = selectedOrdnung;
-    this.listDiscoveries();
+    this.listInsektenFunde();
   }
 
   filterSelectedBeobachter(selectedBeobachter: string) {
     this.removeMarkers();
     this.selectedBeobachter = selectedBeobachter;
-    this.listDiscoveries();
+    this.listInsektenFunde();
   }
 
   removeMarkers() {
