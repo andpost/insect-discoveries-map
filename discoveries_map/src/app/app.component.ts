@@ -24,15 +24,18 @@ export class AppComponent implements OnInit {
   beobachter: string;
   entityMap : Map<string, string> = new Map();
   shownMarkers = new Array();
-  artlist = [];
-  ordnunglist = [];
+  artList = [];
+  ordnungList = [];
+  beobachterList = [];
   selectedArt : string;
   selectedOrdnung : string;
+  selectedBeobachter : string;
   SHOW_ALL : string = "<ALLE>";
 
   constructor(private dataService: DataService) {
-    this.artlist.push(this.SHOW_ALL);
-    this.ordnunglist.push(this.SHOW_ALL);
+    //this.artList.push(this.SHOW_ALL);
+    //this.ordnungList.push(this.SHOW_ALL);
+    //this.beobachterList.push(this.SHOW_ALL);
     this.listDiscoveries();
 
     this.markerIcon = {
@@ -64,51 +67,38 @@ export class AppComponent implements OnInit {
   }
 
   showDiscoveries(discoveries: DiscoveryEntity[]) {
-    this.artlist = [];
-    this.artlist.push(this.SHOW_ALL);
+    this.artList = [];
+    this.artList.push(this.SHOW_ALL);
 
-    this.ordnunglist = [];
-    this.ordnunglist.push(this.SHOW_ALL);
+    this.ordnungList = [];
+    this.ordnungList.push(this.SHOW_ALL);
+
+    this.beobachterList = [];
+    this.beobachterList.push(this.SHOW_ALL);
 
     discoveries.forEach(discovery => {
-      if (this.isSelected(this.selectedArt, discovery.art) && this.isSelected(this.selectedOrdnung, discovery.ordnung)) {
+      if (this.isSelected(this.selectedArt, discovery.art) //
+          && this.isSelected(this.selectedOrdnung, discovery.ordnung) //
+          && this.isSelected(this.selectedBeobachter, discovery.beobachter)) {
         var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
         marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
         this.shownMarkers.push(marker);
 
-        if (!this.artlist.includes(discovery.art)) {
-          this.artlist.push(discovery.art);
+        if (!this.artList.includes(discovery.art)) {
+          this.artList.push(discovery.art);
         }
-        if (!this.ordnunglist.includes(discovery.ordnung)) {
-          this.ordnunglist.push(discovery.ordnung);
+        if (!this.ordnungList.includes(discovery.ordnung)) {
+          this.ordnungList.push(discovery.ordnung);
         }
-      }
-      /*
-      // nothing selected in UI, show all
-      if (this.isNoSelection(this.selectedArt) && this.isNoSelection(this.selectedOrdnung)) {
-        var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
-        marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
-        this.shownMarkers.push(marker);
-      // ordnung is not selected, but art
-      } else if (this.isNoSelection(this.selectedOrdnung)) {
-        if (discovery.art == this.selectedArt) {
-          var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
-          marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
-          this.shownMarkers.push(marker);
-        }
-      } else {
-        
-        if (discovery.art == this.selectedArt) {
-          var marker = L.marker([discovery.lat, discovery.lon], this.getMarkerIcon(discovery)).addTo(this.map);
-          marker.bindPopup(this.getMarkerPopupHtml(discovery)).openPopup();
-          this.shownMarkers.push(marker);
+        if (!this.beobachterList.includes(discovery.beobachter)) {
+          this.beobachterList.push(discovery.beobachter);
         }
       }
-      */
       
     });
-    this.artlist.sort();
-    this.ordnunglist.sort();
+    this.artList.sort();
+    this.ordnungList.sort();
+    this.beobachterList.sort();
   }
 
   isNoSelection(selection : string) : boolean {
@@ -158,6 +148,12 @@ export class AppComponent implements OnInit {
   filterSelectedOrdnung(selectedOrdnung: string) {
     this.removeMarkers();
     this.selectedOrdnung = selectedOrdnung;
+    this.listDiscoveries();
+  }
+
+  filterSelectedBeobachter(selectedBeobachter: string) {
+    this.removeMarkers();
+    this.selectedBeobachter = selectedBeobachter;
     this.listDiscoveries();
   }
 

@@ -3,13 +3,19 @@
         <label for="sel1">Ordnung ausw&auml;hlen: </label>
         <select class="form-control" (change)="filterSelectedOrdnung($event.target.value)">
             <option value=""></option>
-            <option *ngFor="let ordnung of ordnunglist" value="{{ordnung}}">{{ordnung}}</option>
+            <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
         </select>
         &nbsp;
         <label for="sel1">Art ausw&auml;hlen: </label>
         <select class="form-control" (change)="filterSelectedArt($event.target.value)">
             <option value=""></option>
-            <option *ngFor="let art of artlist" value="{{art}}">{{art}}</option>
+            <option *ngFor="let art of artList" value="{{art}}">{{art}}</option>
+        </select>
+        &nbsp;
+        <label for="sel1">Beobachter ausw&auml;hlen: </label>
+        <select class="form-control" (change)="filterSelectedBeobachter($event.target.value)">
+            <option value=""></option>
+            <option *ngFor="let beobachter of beobachterList" value="{{beobachter}}">{{beobachter}}</option>
         </select>
     </div>
 </div>
