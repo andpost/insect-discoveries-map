@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   listInsektenFunde() {
-    this.dataService.getDiscoveries().subscribe((data: InsektenFund[]) => this.showInsektenFundeOnMap(data))
+    this.dataService.getInsektenFunde().subscribe((data: InsektenFund[]) => this.showInsektenFundeOnMap(data))
   }
 
   showInsektenFundeOnMap(insektenFunde: InsektenFund[]) {

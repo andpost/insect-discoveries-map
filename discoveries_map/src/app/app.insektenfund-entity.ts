@@ -1,4 +1,4 @@
-export interface DiscoveryEntity {
+export interface InsektenFund {
 
     artLatin : string;
     
