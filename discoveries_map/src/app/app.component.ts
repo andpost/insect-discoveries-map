@@ -15,9 +15,9 @@ declare let L;
 export class AppComponent implements OnInit {
   title = 'Karte mit Insektenfunden';
 
-  lat: number = 50.929444;
-  lng: number = 13.458333;
-  zoom: number = 8;
+  lat: number = 51.15;
+  lng: number = 13.8;
+  zoom: number = 9;
   map: any;
   markerIcon: any;
   markerIconGreen: any;
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.map = L.map('map').setView([this.lat, this.lng], this.zoom);
+    this.map = L.map('map');
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -96,6 +96,8 @@ export class AppComponent implements OnInit {
     this.artList.sort();
     this.ordnungList.sort();
     this.beobachterList.sort();
+
+    this.map.setView([this.lat, this.lng], this.zoom);
   }
 
   isNoSelection(selection : string) : boolean {
