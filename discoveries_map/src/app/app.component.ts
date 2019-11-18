@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.map = L.map('map').setView([this.lat, this.lng], this.zoom);
+    this.map = L.map('map');
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit {
           && this.isSelected(this.selectedOrdnung, insekt.ordnung) //
           && this.isSelected(this.selectedBeobachter, insekt.beobachter)) {
         var marker = L.marker([insekt.lat, insekt.lon], this.getMarkerIcon(insekt)).addTo(this.map);
-        marker.bindPopup(this.getMarkerPopupHtml(insekt));
+        marker.bindPopup(this.getMarkerPopupHtml(insekt)).openPopup();
         this.shownMarkers.push(marker);
 
         if (!this.artList.includes(insekt.art)) {
@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
     this.ordnungList.sort();
     this.beobachterList.sort();
 
-    //this.map.locate({setView: true, maxZoom: 14});
+    this.map.setView([this.lat, this.lng], this.zoom);
   }
 
   isNoSelection(selection : string) : boolean {
