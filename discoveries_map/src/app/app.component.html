@@ -1,23 +1,16 @@
 <div class="container">
-    <div class="form-group">
-        <label for="sel1">Ordnung ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedOrdnung($event.target.value)">
-            <option value=""></option>
-            <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
-        </select>
-        &nbsp;
-        <label for="sel1">Art ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedArt($event.target.value)">
-            <option value=""></option>
-            <option *ngFor="let art of artList" value="{{art}}">{{art}}</option>
-        </select>
-        &nbsp;
-        <label for="sel1">Beobachter ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedBeobachter($event.target.value)">
-            <option value=""></option>
-            <option *ngFor="let beobachter of beobachterList" value="{{beobachter}}">{{beobachter}}</option>
-        </select>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="#">Men&uuml;</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" routerLink="karten">Karten</a>
+                <a class="nav-item nav-link active" routerLink="arten">Insektenarten</a>
+            </div>
+        </div>
+    </nav>
 </div>
-<div id="map" class="container">
-</div>
+&nbsp;
+<router-outlet></router-outlet>
