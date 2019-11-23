@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { InsektenFund } from "../app.insektenfund-entity";
+import { InsektenFund } from "../insektenfund-entity";
 import { DataService } from '../app.dataservice';
 declare let L;
 
@@ -59,7 +59,7 @@ export class MapPageComponent implements OnInit {
   }
 
   listInsektenFunde() {
-    this.dataService.getInsektenFunde().subscribe((data: InsektenFund[]) => this.showInsektenFundeOnMap(data))
+    this.dataService.getInsektenFunde().subscribe((data: InsektenFund[]) => this.showInsektenFundeOnMap(data));
   }
 
   showInsektenFundeOnMap(insektenFunde: InsektenFund[]) {

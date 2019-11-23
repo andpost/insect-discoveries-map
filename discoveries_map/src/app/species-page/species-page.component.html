@@ -1,1 +1,9 @@
-<p>species-page works!</p>
+<div class="container">
+    <table class="table table-striped">
+        <tbody>
+            <tr *ngFor="let art of arten">
+                <td><b>{{art.nameDeutsch}}</b>&nbsp;<i>{{art.name}}</i> ({{art.ordnung}})</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
