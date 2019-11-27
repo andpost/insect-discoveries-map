@@ -13,9 +13,11 @@ import { InsektenFund } from '../insektenfund-entity';
 })
 export class SpeciesPageComponent implements OnInit {
 
+  ordnungList = [];
   arten : Art[];
   selectedArt : Art;
   artenFunde : InsektenFund[];
+  selectedOrdnung : string;
 
   constructor(private dataService: DataService) { 
     this.loadArtList();
@@ -29,7 +31,20 @@ export class SpeciesPageComponent implements OnInit {
   }
 
   showArten(arten : Art[]) {
-    this.arten = arten;
+    this.arten = [];
+    if (this.selectedOrdnung == null) {
+      this.selectedOrdnung = arten[0].ordnung;
+    }
+
+    arten.forEach(art => {
+      if (art.ordnung == this.selectedOrdnung) {
+        this.arten.push(art);
+      }
+
+      if (!this.ordnungList.includes(art.ordnung)) {
+        this.ordnungList.push(art.ordnung);
+      }
+    });
   }
 
   loadFundeForArt(art: Art) {
@@ -47,4 +62,8 @@ export class SpeciesPageComponent implements OnInit {
     });
   }
 
+  filterSelectedOrdnung(selectedOrdnung: string) {
+    this.selectedOrdnung = selectedOrdnung;
+    this.loadArtList();
+  }
 }
