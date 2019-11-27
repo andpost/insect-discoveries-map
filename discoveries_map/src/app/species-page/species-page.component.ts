@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Art } from "../art-entity";
 import { DataService } from '../app.dataservice';
+import { InsektenFund } from '../insektenfund-entity';
 
 @Component({
   providers: [DataService],
@@ -13,6 +14,8 @@ import { DataService } from '../app.dataservice';
 export class SpeciesPageComponent implements OnInit {
 
   arten : Art[];
+  selectedArt : Art;
+  artenFunde : InsektenFund[];
 
   constructor(private dataService: DataService) { 
     this.loadArtList();
@@ -27,6 +30,21 @@ export class SpeciesPageComponent implements OnInit {
 
   showArten(arten : Art[]) {
     this.arten = arten;
+  }
+
+  loadFundeForArt(art: Art) {
+    this.dataService.getInsektenFunde().subscribe((data: InsektenFund[]) => this.showFundeForArt(art, data));
+  }
+
+  showFundeForArt(art: Art, insektenFunde: InsektenFund[]) {
+    this.selectedArt = art;
+    this.artenFunde = [];
+
+    insektenFunde.forEach(insekt => {
+      if (insekt.artLatin == art.name) {
+        this.artenFunde.push(insekt);
+      }
+    });
   }
 
 }

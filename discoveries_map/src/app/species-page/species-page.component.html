@@ -4,15 +4,32 @@
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
-                        aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+                        aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="loadFundeForArt(art)">
                         <b>{{art.nameDeutsch}}</b>&nbsp;<i>{{art.name}}</i> ({{art.ordnung}})
                     </button>
                 </h2>
             </div>
 
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionArten">
-                <div class="card-body">
-                    {{art.name}}
+                <div *ngIf="selectedArt != null && selectedArt.name == art.name" class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Ort</th>
+                            <th scope="col">Beobachter</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let fund of artenFunde; let j = index">
+                            <th scope="row">{{j + 1}}</th>
+                            <td>{{fund.datum}}</td>
+                            <td>{{fund.fundort}}</td>
+                            <td>{{fund.beobachter}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>
