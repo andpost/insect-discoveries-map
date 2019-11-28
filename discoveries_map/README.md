@@ -1,6 +1,10 @@
-# FundeMap
+# Example project for creating an angular page with routing and leaflet map
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
+
+## Initially load all modules
+
+After checkout, run `ng install` to initially load all node modules.
 
 ## Development server
 
