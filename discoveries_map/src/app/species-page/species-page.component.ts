@@ -56,7 +56,7 @@ export class SpeciesPageComponent implements OnInit {
     this.artenFunde = [];
 
     insektenFunde.forEach(insekt => {
-      if (insekt.artLatin == art.name) {
+      if (insekt.art.name == art.name) {
         this.artenFunde.push(insekt);
       }
     });

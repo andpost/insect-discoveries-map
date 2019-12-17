@@ -11,7 +11,7 @@ export class DataService {
     }
 
     getInsektenFunde() {
-      return this.http.get<InsektenFund[]>('assets/fundmeldungen.json');
+      return this.http.get<InsektenFund[]>('assets/beobachtungen.json');
     }
 
     getArten() {

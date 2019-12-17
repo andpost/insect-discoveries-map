@@ -73,18 +73,18 @@ export class MapPageComponent implements OnInit {
     this.beobachterList.push(this.SHOW_ALL);
 
     insektenFunde.forEach(insekt => {
-      if (this.isSelected(this.selectedArt, insekt.art) //
-          && this.isSelected(this.selectedOrdnung, insekt.ordnung) //
+      if (this.isSelected(this.selectedArt, insekt.art.nameDeutsch) //
+          && this.isSelected(this.selectedOrdnung, insekt.art.ordnung) //
           && this.isSelected(this.selectedBeobachter, insekt.beobachter)) {
         var marker = L.marker([insekt.lat, insekt.lon], this.getMarkerIcon(insekt)).addTo(this.map);
         marker.bindPopup(this.getMarkerPopupHtml(insekt));
         this.shownMarkers.push(marker);
 
-        if (!this.artList.includes(insekt.art)) {
-          this.artList.push(insekt.art);
+        if (!this.artList.includes(insekt.art.nameDeutsch)) {
+          this.artList.push(insekt.art.nameDeutsch);
         }
-        if (!this.ordnungList.includes(insekt.ordnung)) {
-          this.ordnungList.push(insekt.ordnung);
+        if (!this.ordnungList.includes(insekt.art.ordnung)) {
+          this.ordnungList.push(insekt.art.ordnung);
         }
         if (!this.beobachterList.includes(insekt.beobachter)) {
           this.beobachterList.push(insekt.beobachter);
@@ -125,13 +125,13 @@ export class MapPageComponent implements OnInit {
   }
 
   getMarkerPopupHtml(insekt: InsektenFund) {
-    return "<b>" + this.encodeHtmlEntities(insekt.art) + "</b> <i>" + insekt.artLatin + "</i>"
-      + "<br />" + insekt.ordnung
-      + "<br />" + insekt.datum + " - " + insekt.einheit
+    return "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b> <i>" + insekt.art.name + "</i>"
+      + "<br />" + insekt.art.ordnung
+      + "<br />" + insekt.datum + " - " + insekt.stadium
       + "<br />Fundort: " + this.encodeHtmlEntities(insekt.fundort)
       + "<br />Beobachter: " + this.encodeHtmlEntities(insekt.beobachter)
       + "<br />Anzahl: " + insekt.anzahl
-      + "<br />Fundpr&uuml;fung: " + insekt.fundPruefung;
+      + "<br />Fundpr&uuml;fung: " + insekt.pruefung;
   }
 
   encodeHtmlEntities(stringToEncode: string) {
