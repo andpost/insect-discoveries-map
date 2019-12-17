@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from  "@angular/common/http";
-import { InsektenFund } from "./insektenfund-entity";
 import { Art } from "./art-entity";
+import { Beobachtung } from "./beobachtung-entity";
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class DataService {
     }
 
     getInsektenFunde() {
-      return this.http.get<InsektenFund[]>('assets/beobachtungen.json');
+      return this.http.get<Beobachtung[]>('assets/beobachtungen.json');
     }
 
     getArten() {

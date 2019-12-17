@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { InsektenFund } from "../insektenfund-entity";
+import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
 declare let L;
 
@@ -59,10 +59,10 @@ export class MapPageComponent implements OnInit {
   }
 
   listInsektenFunde() {
-    this.dataService.getInsektenFunde().subscribe((data: InsektenFund[]) => this.showInsektenFundeOnMap(data));
+    this.dataService.getInsektenFunde().subscribe((data: Beobachtung[]) => this.showInsektenFundeOnMap(data));
   }
 
-  showInsektenFundeOnMap(insektenFunde: InsektenFund[]) {
+  showInsektenFundeOnMap(insektenFunde: Beobachtung[]) {
     this.artList = [];
     this.artList.push(this.SHOW_ALL);
 
@@ -114,7 +114,7 @@ export class MapPageComponent implements OnInit {
     return false;
   }
 
-  getMarkerIcon(insekt: InsektenFund) {
+  getMarkerIcon(insekt: Beobachtung) {
     if (this.beobachter == null) {
       this.beobachter = insekt.beobachter;
     }
@@ -124,7 +124,7 @@ export class MapPageComponent implements OnInit {
     return this.markerIcon;
   }
 
-  getMarkerPopupHtml(insekt: InsektenFund) {
+  getMarkerPopupHtml(insekt: Beobachtung) {
     return "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b> <i>" + insekt.art.name + "</i>"
       + "<br />" + insekt.art.ordnung
       + "<br />" + insekt.datum + " - " + insekt.stadium

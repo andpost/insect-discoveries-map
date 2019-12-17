@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Art } from "../art-entity";
+import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
-import { InsektenFund } from '../insektenfund-entity';
 
 @Component({
   providers: [DataService],
@@ -16,7 +16,7 @@ export class SpeciesPageComponent implements OnInit {
   ordnungList = [];
   arten : Art[];
   selectedArt : Art;
-  artenFunde : InsektenFund[];
+  artenFunde : Beobachtung[];
   selectedOrdnung : string;
 
   constructor(private dataService: DataService) { 
@@ -47,19 +47,23 @@ export class SpeciesPageComponent implements OnInit {
     });
   }
 
+  /*
   loadFundeForArt(art: Art) {
-    this.dataService.getInsektenFunde().subscribe((data: InsektenFund[]) => this.showFundeForArt(art, data));
+    this.dataService.getInsektenFunde().subscribe((data: Beobachtung[]) => this.showFundeForArt(art, data));
   }
+  */
 
-  showFundeForArt(art: Art, insektenFunde: InsektenFund[]) {
+  showFundeForArt(art: Art) {
     this.selectedArt = art;
-    this.artenFunde = [];
+    this.artenFunde = art.beobachtungen;
 
-    insektenFunde.forEach(insekt => {
+    /*
+    art.beobachtungen.forEach(insekt => {
       if (insekt.art.name == art.name) {
         this.artenFunde.push(insekt);
       }
     });
+    */
   }
 
   filterSelectedOrdnung(selectedOrdnung: string) {

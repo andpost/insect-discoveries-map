@@ -1,6 +1,6 @@
 import { Art } from "./art-entity";
 
-export interface InsektenFund {
+export interface Beobachtung {
 
     art : Art;
     

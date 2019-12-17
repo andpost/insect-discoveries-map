@@ -1,3 +1,5 @@
+import { Beobachtung } from "./beobachtung-entity";
+
 export interface Art {
 
     name : string;
@@ -5,4 +7,12 @@ export interface Art {
     nameDeutsch : string;
 
     ordnung : string;
+
+    urlWikipedia : string;
+
+    urlInsektenSachsen : string;
+
+    urlSonstige : string;
+
+    beobachtungen : Beobachtung[];
 }

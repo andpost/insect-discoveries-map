@@ -10,7 +10,7 @@
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
-                        aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="loadFundeForArt(art)">
+                        aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="showFundeForArt(art)">
                         <b>{{art.nameDeutsch}}</b>&nbsp;<i>{{art.name}}</i> ({{art.ordnung}})
                     </button>
                 </h2>
