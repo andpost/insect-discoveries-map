@@ -1,3 +1,4 @@
+import { Artfoto } from "./artfoto-entity";
 import { Beobachtung } from "./beobachtung-entity";
 
 export interface Art {
@@ -13,6 +14,8 @@ export interface Art {
     urlInsektenSachsen : string;
 
     urlSonstige : string;
+
+    artfoto : Artfoto;
 
     beobachtungen : Beobachtung[];
 }
