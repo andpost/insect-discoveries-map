@@ -47,23 +47,9 @@ export class SpeciesPageComponent implements OnInit {
     });
   }
 
-  /*
-  loadFundeForArt(art: Art) {
-    this.dataService.getInsektenFunde().subscribe((data: Beobachtung[]) => this.showFundeForArt(art, data));
-  }
-  */
-
   showFundeForArt(art: Art) {
     this.selectedArt = art;
     this.artenFunde = art.beobachtungen;
-
-    /*
-    art.beobachtungen.forEach(insekt => {
-      if (insekt.art.name == art.name) {
-        this.artenFunde.push(insekt);
-      }
-    });
-    */
   }
 
   filterSelectedOrdnung(selectedOrdnung: string) {
