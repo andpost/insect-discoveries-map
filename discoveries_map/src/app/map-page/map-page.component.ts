@@ -127,7 +127,7 @@ export class MapPageComponent implements OnInit {
   getMarkerPopupHtml(insekt: Beobachtung) {
     return "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b> <i>" + insekt.art.name + "</i>"
       + "<br />" + insekt.art.ordnung
-      + "<br />" + insekt.datum + " - " + insekt.stadium
+      + "<br />" + this.dataService.formatDateString(insekt.datum) + " - " + insekt.stadium
       + "<br />Fundort: " + this.encodeHtmlEntities(insekt.fundort)
       + "<br />Beobachter: " + this.encodeHtmlEntities(insekt.beobachter)
       + "<br />Anzahl: " + insekt.anzahl

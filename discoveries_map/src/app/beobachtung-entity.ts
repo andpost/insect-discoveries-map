@@ -6,6 +6,8 @@ export interface Beobachtung {
     
     datum: string;
 
+    datumFormattiert : string;
+
     beobachter: string;
     
     lat: number;

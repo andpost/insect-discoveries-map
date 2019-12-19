@@ -50,6 +50,10 @@ export class SpeciesPageComponent implements OnInit {
   showFundeForArt(art: Art) {
     this.selectedArt = art;
     this.artenFunde = art.beobachtungen;
+
+    this.artenFunde.forEach(beobachtung => {
+      beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+    });
   }
 
   filterSelectedOrdnung(selectedOrdnung: string) {

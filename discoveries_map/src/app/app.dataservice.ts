@@ -17,4 +17,26 @@ export class DataService {
     getArten() {
       return this.http.get<Art[]>('assets/arten.json');
     }
+
+    formatDateString(date : string) : string {
+      var monthNames = [
+        "Jan", "Feb", "Mar",
+        "Apr", "Mai", "Jun", "Jul",
+        "Aug", "Sep", "Okt",
+        "Nov", "Dez"
+      ];
+  
+      var dateSplit = date.split("-");
+    
+      var day = dateSplit[2];
+      var monthIndex = dateSplit[1];
+  
+      if (monthIndex.startsWith("0")) {
+        monthIndex = monthIndex.charAt(1);
+      }
+  
+      var year = dateSplit[0];
+    
+      return day + '. ' + monthNames[monthIndex] + ' ' + year;
+    }
 }

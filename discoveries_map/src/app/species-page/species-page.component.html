@@ -26,20 +26,12 @@
                     <a *ngIf="selectedArt.urlSonstige != null" href="{{selectedArt.urlSonstige}}" class="badge badge-info" target="_blank">Weitere Infos</a><br /><br />
 
                     <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Datum</th>
-                            <th scope="col">Ort</th>
-                            <th scope="col">Beobachter</th>
-                          </tr>
-                        </thead>
                         <tbody>
                           <tr *ngFor="let fund of artenFunde; let j = index">
-                            <th scope="row">{{j + 1}}</th>
-                            <td>{{fund.datum}}</td>
-                            <td>{{fund.fundort}}</td>
-                            <td>{{fund.beobachter}}</td>
+                            <td>
+                                {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small><br />
+                                {{fund.fundort}}
+                            </td>
                           </tr>
                         </tbody>
                       </table>
