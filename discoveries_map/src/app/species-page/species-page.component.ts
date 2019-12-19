@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Art } from "../art-entity";
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
+import { Artfoto } from '../artfoto-entity';
 
 @Component({
   providers: [DataService],
@@ -17,6 +18,7 @@ export class SpeciesPageComponent implements OnInit {
   arten : Art[];
   selectedArt : Art;
   artenFunde : Beobachtung[];
+  artenFotos : Artfoto[];
   selectedOrdnung : string;
 
   constructor(private dataService: DataService) { 
@@ -50,10 +52,14 @@ export class SpeciesPageComponent implements OnInit {
   showFundeForArt(art: Art) {
     this.selectedArt = art;
     this.artenFunde = art.beobachtungen;
+    this.artenFotos = [];
 
     this.artenFunde.forEach(beobachtung => {
       beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+
+      beobachtung.fotos.forEach(foto => this.artenFotos.push(foto));
     });
+    
   }
 
   filterSelectedOrdnung(selectedOrdnung: string) {

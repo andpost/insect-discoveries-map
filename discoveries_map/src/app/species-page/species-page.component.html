@@ -26,6 +26,11 @@
                     <a *ngIf="selectedArt.urlSonstige != null" href="{{selectedArt.urlSonstige}}" class="badge badge-info" target="_blank">Weitere Infos</a><br /><br />
 
                     <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Beobachtungen</th>
+                            </tr>
+                        </thead>
                         <tbody>
                           <tr *ngFor="let fund of artenFunde; let j = index">
                             <td>
@@ -34,7 +39,9 @@
                             </td>
                           </tr>
                         </tbody>
-                      </table>
+                    </table>
+
+                    <img *ngFor="let foto of artenFotos" src="assets/{{foto.thumbnailPfad}}" alt="thumbnail" class="img-thumbnail" />
                 </div>
             </div>
         </div>
