@@ -37,3 +37,9 @@ See documentation at https://codehandbook.org/use-leaflet-in-angular/
 ## Adding Observable support
 
 Run 'npm install rxjs-compat --save' inside project folder.
+
+## Adding Ngx-Lightbox
+
+npm install --save ngx-lightbox
+
+See also https://www.npmjs.com/package/ngx-lightbox

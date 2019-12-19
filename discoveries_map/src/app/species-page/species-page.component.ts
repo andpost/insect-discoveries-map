@@ -6,8 +6,10 @@ import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
 import { Artfoto } from '../artfoto-entity';
 
+import { Lightbox } from 'ngx-lightbox';
+
 @Component({
-  providers: [DataService],
+  providers: [DataService, Lightbox],
   selector: 'app-species-page',
   templateUrl: './species-page.component.html',
   styleUrls: ['./species-page.component.css']
@@ -21,7 +23,7 @@ export class SpeciesPageComponent implements OnInit {
   artenFotos : Artfoto[];
   selectedOrdnung : string;
 
-  constructor(private dataService: DataService) { 
+  constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadArtList();
   }
 
@@ -57,7 +59,12 @@ export class SpeciesPageComponent implements OnInit {
     this.artenFunde.forEach(beobachtung => {
       beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
 
-      beobachtung.fotos.forEach(foto => this.artenFotos.push(foto));
+      beobachtung.fotos.forEach(foto => {
+        foto.src = "assets/" + foto.bildPfad;
+        foto.thumb = "assets/" + foto.thumbnailPfad;
+        
+        this.artenFotos.push(foto);
+      });
     });
     
   }
@@ -65,5 +72,15 @@ export class SpeciesPageComponent implements OnInit {
   filterSelectedOrdnung(selectedOrdnung: string) {
     this.selectedOrdnung = selectedOrdnung;
     this.loadArtList();
+  }
+
+  open(index: number): void {
+    // open lightbox
+    this.lightbox.open(this.artenFotos, index);
+  }
+ 
+  close(): void {
+    // close lightbox programmatically
+    this.lightbox.close();
   }
 }

@@ -40,8 +40,7 @@
                           </tr>
                         </tbody>
                     </table>
-
-                    <img *ngFor="let foto of artenFotos" src="assets/{{foto.thumbnailPfad}}" alt="thumbnail" class="img-thumbnail" />
+                    <img *ngFor="let foto of artenFotos; let i=index" [src]="foto.thumb" (click)="open(i)" alt="thumbnail" class="img-thumbnail" />
                 </div>
             </div>
         </div>

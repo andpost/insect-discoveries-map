@@ -5,4 +5,10 @@ export interface Artfoto {
     thumbnailPfad : string;
 
     iconPfad : string;
+
+    src : string;
+
+    caption : string;
+    
+    thumb : string;
 }

@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { SpeciesPageComponent } from './species-page/species-page.component';
 
+import { LightboxModule } from 'ngx-lightbox';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,8 @@ import { SpeciesPageComponent } from './species-page/species-page.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LightboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
