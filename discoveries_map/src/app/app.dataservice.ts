@@ -18,6 +18,10 @@ export class DataService {
       return this.http.get<Art[]>('assets/arten.json');
     }
 
+    getYearFromDateString(date : string) {
+      return date.split("-")[0];
+    }
+
     formatDateString(date : string) : string {
       var monthNames = [
         "Jan", "Feb", "Mar",

@@ -59,12 +59,16 @@ export class SpeciesPageComponent implements OnInit {
     this.artenFunde.forEach(beobachtung => {
       beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
 
-      beobachtung.fotos.forEach(foto => {
-        foto.src = "assets/" + foto.bildPfad;
-        foto.thumb = "assets/" + foto.thumbnailPfad;
-        
-        this.artenFotos.push(foto);
-      });
+      if (beobachtung.fotos != null) {
+        beobachtung.fotos.forEach(foto => {
+          foto.src = "assets/" + foto.bildPfad;
+          foto.thumb = "assets/" + foto.thumbnailPfad;
+          foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
+            this.dataService.getYearFromDateString(beobachtung.datum) + ", " + beobachtung.beobachter + ")";
+          
+          this.artenFotos.push(foto);
+        });
+      }
     });
     
   }
