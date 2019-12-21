@@ -61,8 +61,8 @@ export class SpeciesPageComponent implements OnInit {
 
       if (beobachtung.fotos != null) {
         beobachtung.fotos.forEach(foto => {
-          foto.src = "assets/" + foto.bildPfad;
-          foto.thumb = "assets/" + foto.thumbnailPfad;
+          foto.src = "assets/images/" + foto.bildPfad;
+          foto.thumb = "assets/images/" + foto.thumbnailPfad;
           foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
             this.dataService.getYearFromDateString(beobachtung.datum) + ", " + beobachtung.beobachter + ")";
           

@@ -33,11 +33,13 @@ export class DataService {
       var dateSplit = date.split("-");
     
       var day = dateSplit[2];
-      var monthIndex = dateSplit[1];
+      var monthNumber = dateSplit[1];
   
-      if (monthIndex.startsWith("0")) {
-        monthIndex = monthIndex.charAt(1);
+      if (monthNumber.startsWith("0")) {
+        monthNumber = monthNumber.charAt(1);
       }
+
+      var monthIndex = parseInt(monthNumber) -1;
   
       var year = dateSplit[0];
     
