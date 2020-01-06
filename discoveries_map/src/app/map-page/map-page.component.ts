@@ -125,13 +125,23 @@ export class MapPageComponent implements OnInit {
   }
 
   getMarkerPopupHtml(insekt: Beobachtung) {
-    return "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b> <i>" + insekt.art.name + "</i>"
-      + "<br />" + insekt.art.ordnung
-      + "<br />" + this.dataService.formatDateString(insekt.datum) + " - " + insekt.stadium
-      + "<br />Fundort: " + this.encodeHtmlEntities(insekt.fundort)
-      + "<br />Beobachter: " + this.encodeHtmlEntities(insekt.beobachter)
-      + "<br />Anzahl: " + insekt.anzahl
-      + "<br />Fundpr&uuml;fung: " + insekt.pruefung;
+    var htmlImg = "";
+
+    if (insekt.art.artfoto != null && insekt.art.artfoto.iconPfad != null) {
+      htmlImg = "<img src=\"assets/images/" + insekt.art.artfoto.iconPfad + "\" alt=\"Icon\" class=\"img-thumbnail\" />";
+    }
+
+    var htmlArt = "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b><br /><i>" + insekt.art.name + "</i><br />" + insekt.art.ordnung;
+
+    var html = "<table><tr><td>" + htmlArt + "</td><td style=\"text-align: right;\">" + htmlImg + "</td></tr>"
+      + "<tr><td colspan=\"2\">" + this.dataService.formatDateString(insekt.datum) + " - " + insekt.stadium + "</td></tr>"
+      + "<tr><td colspan=\"2\">Fundort: " + this.encodeHtmlEntities(insekt.fundort) + "</td></tr>"
+      + "<tr><td colspan=\"2\">Beobachter: " + this.encodeHtmlEntities(insekt.beobachter) + "</td></tr>"
+      + "<tr><td colspan=\"2\">Anzahl: " + insekt.anzahl + "</td></tr>"
+      + "<tr><td colspan=\"2\">Fundpr&uuml;fung: " + insekt.pruefung; + "</td></tr>"
+      + "</table>"
+
+      return html;
   }
 
   encodeHtmlEntities(stringToEncode: string) {
