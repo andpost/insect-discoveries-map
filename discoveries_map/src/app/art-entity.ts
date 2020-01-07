@@ -15,6 +15,8 @@ export interface Art {
 
     urlSonstige : string;
 
+    urlVideo : string;
+
     artfoto : Artfoto;
 
     beobachtungen : Beobachtung[];
