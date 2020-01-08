@@ -61,10 +61,16 @@ export class SpeciesPageComponent implements OnInit {
 
       if (beobachtung.fotos != null) {
         beobachtung.fotos.forEach(foto => {
+          var copyRight = beobachtung.beobachter;
+
+          if (foto.altCopyright != null) {
+            copyRight = foto.altCopyright;
+          }
+
           foto.src = "assets/images/" + foto.bildPfad;
           foto.thumb = "assets/images/" + foto.thumbnailPfad;
           foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
-            this.dataService.getYearFromDateString(beobachtung.datum) + ", " + beobachtung.beobachter + ")";
+            this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";
           
           this.artenFotos.push(foto);
         });
