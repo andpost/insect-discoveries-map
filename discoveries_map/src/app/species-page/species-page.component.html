@@ -9,11 +9,22 @@
         <div class="card" *ngFor="let art of arten; let i = index">
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
-                    <img *ngIf="art.artfoto != null && art.artfoto.iconPfad != null" src="assets/images/{{art.artfoto.iconPfad}}" alt="Icon" class="img-thumbnail" />
                     <button class="btn btn-link text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
-                        aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="showFundeForArt(art)">
-                        <b>{{art.nameDeutsch}}</b><br />
-                        <small class="text-muted"><em>{{art.name}}</em></small>
+                    aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="showFundeForArt(art)">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img *ngIf="art.artfoto != null && art.artfoto.iconPfad != null" 
+                                        src="assets/images/{{art.artfoto.iconPfad}}" 
+                                        alt="Icon" class="img-thumbnail"
+                                        style="margin-right: 10px;" />
+                                </td>
+                                <td>
+                                    <b>{{art.nameDeutsch}}</b><br />
+                                    <small class="text-muted"><em>{{art.name}}</em></small>
+                                </td>
+                            </tr>
+                        </table>
                     </button>
                 </h2>
             </div>
@@ -21,9 +32,12 @@
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionArten">
                 <div *ngIf="selectedArt != null && selectedArt.name == art.name" class="card-body">
 
-                    <a *ngIf="selectedArt.urlWikipedia != null" href="{{selectedArt.urlWikipedia}}" class="badge badge-info" target="_blank">Wikipedia</a>&nbsp;
-                    <a *ngIf="selectedArt.urlInsektenSachsen != null" href="{{selectedArt.urlInsektenSachsen}}" class="badge badge-info" target="_blank">Insekten Sachsen</a>&nbsp;
+                    <a *ngIf="selectedArt.urlWikipedia != null" href="{{selectedArt.urlWikipedia}}" class="badge badge-info" target="_blank">Wikipedia</a>
+                    <span *ngIf="selectedArt.urlWikipedia != null">&nbsp;</span>
+                    <a *ngIf="selectedArt.urlInsektenSachsen != null" href="{{selectedArt.urlInsektenSachsen}}" class="badge badge-info" target="_blank">Insekten Sachsen</a>
+                    <span *ngIf="selectedArt.urlInsektenSachsen != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlSonstige != null" href="{{selectedArt.urlSonstige}}" class="badge badge-info" target="_blank">Weitere Infos</a>
+                    <span *ngIf="selectedArt.urlSonstige != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlVideo != null" href="{{selectedArt.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
 
                     <table class="table table-striped">
