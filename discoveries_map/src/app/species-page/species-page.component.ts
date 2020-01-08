@@ -7,6 +7,7 @@ import { DataService } from '../app.dataservice';
 import { Artfoto } from '../artfoto-entity';
 
 import { Lightbox } from 'ngx-lightbox';
+import { ArrayType } from '@angular/compiler';
 
 @Component({
   providers: [DataService, Lightbox],
@@ -18,6 +19,7 @@ export class SpeciesPageComponent implements OnInit {
 
   ordnungList = [];
   arten : Art[];
+  filteredArten : Art[];
   selectedArt : Art;
   artenFunde : Beobachtung[];
   artenFotos : Artfoto[];
@@ -49,6 +51,8 @@ export class SpeciesPageComponent implements OnInit {
         this.ordnungList.push(art.ordnung);
       }
     });
+
+    this.filteredArten = this.arten;
   }
 
   showFundeForArt(art: Art) {
@@ -92,5 +96,28 @@ export class SpeciesPageComponent implements OnInit {
   close(): void {
     // close lightbox programmatically
     this.lightbox.close();
+  }
+
+  filterBySearch(search: string) {
+    this.filteredArten = [];
+
+    if (search == null || search.length == 0) {
+      this.filteredArten = this.arten;
+      return;
+    }
+
+    this.arten.forEach(art => {
+      if (this.isMatchForArt(art, search)) {
+        this.filteredArten.push(art);
+      }
+    });
+  }
+
+  isMatchForArt(art: Art, search: string) : boolean {
+    var nameLC = art.name.toLocaleLowerCase();
+    var nameDeutschLC = art.nameDeutsch.toLocaleLowerCase();
+    var searchLC = search.toLocaleLowerCase();
+
+    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC) || nameDeutschLC.startsWith(searchLC) || nameDeutschLC.includes(searchLC);
   }
 }

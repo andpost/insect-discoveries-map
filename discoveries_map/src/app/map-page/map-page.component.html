@@ -1,19 +1,17 @@
 <div class="container">
     <div class="form-group">
-        <label for="sel1">Ordnung ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedOrdnung($event.target.value)">
+        <h6>Ordnung ausw&auml;hlen:</h6>
+        <select class="form-control form-control-sm" (change)="filterSelectedOrdnung($event.target.value)">
             <option value=""></option>
             <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
         </select>
-        &nbsp;
-        <label for="sel1">Art ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedArt($event.target.value)">
+        <h6>Art ausw&auml;hlen:</h6>
+        <select class="form-control form-control-sm" (change)="filterSelectedArt($event.target.value)">
             <option value=""></option>
             <option *ngFor="let art of artList" value="{{art}}">{{art}}</option>
         </select>
-        &nbsp;
-        <label for="sel1">Beobachter ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedBeobachter($event.target.value)">
+        <h6>Beobachter ausw&auml;hlen:</h6>
+        <select class="form-control form-control-sm" (change)="filterSelectedBeobachter($event.target.value)">
             <option value=""></option>
             <option *ngFor="let beobachter of beobachterList" value="{{beobachter}}">{{beobachter}}</option>
         </select>

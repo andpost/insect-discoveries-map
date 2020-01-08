@@ -1,12 +1,14 @@
 <div class="container">
     <div class="form-group">
-        <label for="sel1">Ordnung ausw&auml;hlen: </label>
-        <select class="form-control" (change)="filterSelectedOrdnung($event.target.value)">
+        <h6>Ordnung ausw&auml;hlen:</h6>
+        <select class="form-control form-control-sm" (change)="filterSelectedOrdnung($event.target.value)">
             <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
         </select>
+        &nbsp;
+        <input class="form-control form-control-sm" type="text" placeholder="Suche..." (keyup)="filterBySearch($event.target.value)">
     </div>
     <div class="accordion" id="accordionArten">
-        <div class="card" *ngFor="let art of arten; let i = index">
+        <div class="card" *ngFor="let art of filteredArten; let i = index">
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
                     <button class="btn btn-link text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
