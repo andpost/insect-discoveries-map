@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IndexPageComponent } from './index-page/index-page.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { SpeciesPageComponent } from './species-page/species-page.component';
 
@@ -15,14 +16,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/karten',
-    pathMatch: 'full'
-},
-{
+    component: IndexPageComponent
+  },
+  {
     path: '**',
-    redirectTo: '/karten',
+    redirectTo: '/',
     pathMatch: 'full'
-}
+  }
 ];
 
 @NgModule({

@@ -9,12 +9,14 @@ import { MapPageComponent } from './map-page/map-page.component';
 import { SpeciesPageComponent } from './species-page/species-page.component';
 
 import { LightboxModule } from 'ngx-lightbox';
+import { IndexPageComponent } from './index-page/index-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapPageComponent,
-    SpeciesPageComponent
+    SpeciesPageComponent,
+    IndexPageComponent
   ],
   imports: [
     BrowserModule,

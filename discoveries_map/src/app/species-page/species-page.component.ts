@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Art } from "../art-entity";
 import { Beobachtung } from "../beobachtung-entity";

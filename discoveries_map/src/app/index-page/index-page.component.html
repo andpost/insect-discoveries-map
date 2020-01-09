@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="roundedborder">
+        <h4 class="text-center">Beobachtungen von Insekten</h4>
+        <h5 class="text-center text-muted">Statistiken</h5>
+
+        <span class="badge badge-success">{{anzahlArten}}</span> unterschiedliche Arten aus 
+        <span class="badge badge-success">{{anzahlOrdnungen}}</span> unterschiedlichen Insektenordnungen wurden beobachtet und bestimmt.<br />
+
+        <ul class="list-group">
+            <li *ngFor="let entry of artenProOrdnung | keyvalue" class="list-group-item d-flex align-items-center">
+                <span class="badge badge-success badge-pill">{{entry.value}}</span>&nbsp;
+                {{entry.key}}
+            </li>
+        </ul>
+
+        <span class="badge badge-success">{{anzahlBeobachtungen}}</span> Beobachtungen.<br />
+        Zu <span class="badge badge-success">{{anzahlArtenMitFotos}}</span> Arten sind Fotos auf der Seite, insgesamt sind
+        <span class="badge badge-success">{{anzahlFotos}}</span> Fotos zu allen Beobachtungen hinterlegt.
+    </div>
+</div>
