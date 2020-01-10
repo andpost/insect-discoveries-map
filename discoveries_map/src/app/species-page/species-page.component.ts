@@ -116,7 +116,14 @@ export class SpeciesPageComponent implements OnInit {
     var nameLC = art.name.toLocaleLowerCase();
     var nameDeutschLC = art.nameDeutsch.toLocaleLowerCase();
     var searchLC = search.toLocaleLowerCase();
+    var familieLC = "";
 
-    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC) || nameDeutschLC.startsWith(searchLC) || nameDeutschLC.includes(searchLC);
+    if (art.familie != null) {
+      familieLC = art.familie.toLocaleLowerCase();
+    }
+
+    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC) 
+      || nameDeutschLC.startsWith(searchLC) || nameDeutschLC.includes(searchLC)
+      || familieLC.startsWith(searchLC) || familieLC.includes(searchLC);
   }
 }

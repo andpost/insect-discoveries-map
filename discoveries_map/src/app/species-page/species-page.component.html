@@ -5,7 +5,7 @@
             <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
         </select>
         &nbsp;
-        <input class="form-control form-control-sm" type="text" placeholder="Suche..." (keyup)="filterBySearch($event.target.value)">
+        <input class="form-control form-control-sm" type="text" placeholder="Suche (Artname oder Familie)..." (keyup)="filterBySearch($event.target.value)">
     </div>
     <div class="accordion" id="accordionArten">
         <div class="card" *ngFor="let art of filteredArten; let i = index">
@@ -22,7 +22,7 @@
                                         style="margin-right: 10px;" />
                                 </td>
                                 <td>
-                                    <b>{{art.nameDeutsch}}</b><br />
+                                    <b>{{art.nameDeutsch}}</b><small *ngIf="art.familie != null" class="text-muted">&nbsp;({{art.familie}})</small><br />
                                     <small class="text-muted"><em>{{art.name}}</em></small>
                                 </td>
                             </tr>

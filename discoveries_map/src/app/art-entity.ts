@@ -9,6 +9,8 @@ export interface Art {
 
     ordnung : string;
 
+    familie : string;
+
     urlWikipedia : string;
 
     urlInsektenSachsen : string;
