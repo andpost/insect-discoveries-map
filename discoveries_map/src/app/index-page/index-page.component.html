@@ -1,20 +1,27 @@
 <div class="container">
-    <div class="roundedborder">
-        <h4 class="text-center">Beobachtungen von Insekten</h4>
+    <div class="jumbotron">
+        <h3 class="text-center">Insektenbeobachtungen</h3>
         <h5 class="text-center text-muted">Statistiken</h5>
 
-        <span class="badge badge-success">{{anzahlArten}}</span> unterschiedliche Arten aus 
-        <span class="badge badge-success">{{anzahlOrdnungen}}</span> unterschiedlichen Insektenordnungen wurden beobachtet und bestimmt.<br />
+        <p class="text-center">
+            <br />
+            <span class="badge badge-success">{{anzahlArten}}</span> unterschiedliche Arten aus <br />
+            <span class="badge badge-success">{{anzahlOrdnungen}}</span> unterschiedlichen Insektenordnungen wurden beobachtet und bestimmt.
+            <br /><br />
+            Insgesamt <span class="badge badge-success">{{anzahlBeobachtungen}}</span> Beobachtungen zu den Arten sind dokumentiert.
+            <br /><br />
+            Zu <span class="badge badge-success">{{anzahlArtenMitFotos}}</span> Arten sind bis jetzt Fotos gepflegt.
+            <br /><br />
+            Insgesamt sind <span class="badge badge-success">{{anzahlFotos}}</span> Fotos zu allen Beobachtungen gepflegt.
+        </p>
 
-        <ul class="list-group">
+        <ul>
             <li *ngFor="let entry of artenProOrdnung | keyvalue" class="list-group-item d-flex align-items-center">
                 <span class="badge badge-success badge-pill">{{entry.value}}</span>&nbsp;
                 {{entry.key}}
             </li>
         </ul>
 
-        <span class="badge badge-success">{{anzahlBeobachtungen}}</span> Beobachtungen.<br />
-        Zu <span class="badge badge-success">{{anzahlArtenMitFotos}}</span> Arten sind Fotos auf der Seite, insgesamt sind
-        <span class="badge badge-success">{{anzahlFotos}}</span> Fotos zu allen Beobachtungen hinterlegt.
+        
     </div>
 </div>
