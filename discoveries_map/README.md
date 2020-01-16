@@ -18,17 +18,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Checking / fixing vulnerabilities
+Run `npm audit` for details, `npm audit fix` to fix them.
 
 ## Adding Leaflet Maps
 
@@ -40,14 +31,27 @@ Run 'npm install rxjs-compat --save' inside project folder.
 
 ## Adding Ngx-Lightbox
 
+```
 npm install --save ngx-lightbox
-
+```
 See also https://www.npmjs.com/package/ngx-lightbox
 
 ## Adding Font Awesome
-
+```
 npm install @fortawesome/fontawesome-svg-core
 npm install @fortawesome/free-solid-svg-icons
 npm install @fortawesome/angular-fontawesome@0.5.x
-
+```
 See also https://www.npmjs.com/package/@fortawesome/angular-fontawesome and https://fontawesome.com/how-to-use/on-the-web/using-with/angular
+
+### Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+### Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+### Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
