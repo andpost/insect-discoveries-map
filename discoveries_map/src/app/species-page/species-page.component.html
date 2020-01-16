@@ -20,6 +20,7 @@
                                         src="assets/images/{{art.artfoto.iconPfad}}" 
                                         alt="Icon" class="img-thumbnail"
                                         style="margin-right: 10px;" />
+                                    <fa-icon *ngIf="art.artfoto == null || art.artfoto.iconPfad == null" [icon]="faImage" size="2x" [border]="true" [fixedWidth]="true"></fa-icon>
                                 </td>
                                 <td>
                                     <b>{{art.nameDeutsch}}</b><small *ngIf="art.familie != null" class="text-muted">&nbsp;({{art.familie}})</small><br />

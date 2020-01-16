@@ -4,9 +4,9 @@ import { Art } from "../art-entity";
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
 import { Artfoto } from '../artfoto-entity';
-
 import { Lightbox } from 'ngx-lightbox';
 import { ArrayType } from '@angular/compiler';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   providers: [DataService, Lightbox],
@@ -23,6 +23,7 @@ export class SpeciesPageComponent implements OnInit {
   artenFunde : Beobachtung[];
   artenFotos : Artfoto[];
   selectedOrdnung : string;
+  faImage = faImage;
 
   constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadArtList();
