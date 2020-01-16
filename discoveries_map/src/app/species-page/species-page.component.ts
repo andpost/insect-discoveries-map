@@ -6,7 +6,7 @@ import { DataService } from '../app.dataservice';
 import { Artfoto } from '../artfoto-entity';
 import { Lightbox } from 'ngx-lightbox';
 import { ArrayType } from '@angular/compiler';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faCalendarAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   providers: [DataService, Lightbox],
@@ -24,6 +24,8 @@ export class SpeciesPageComponent implements OnInit {
   artenFotos : Artfoto[];
   selectedOrdnung : string;
   faImage = faImage;
+  faCalendarAlt = faCalendarAlt;
+  faMapMarkerAlt = faMapMarkerAlt;
 
   constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadArtList();

@@ -52,8 +52,9 @@
                         <tbody>
                           <tr *ngFor="let fund of artenFunde; let j = index">
                             <td>
+                                <fa-icon [icon]="faCalendarAlt" [styles]="{'stroke': 'lightgrey', 'color': 'lightgrey'}"></fa-icon>
                                 {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small><br />
-                                {{fund.fundort}}
+                                <fa-icon [icon]="faMapMarkerAlt" [styles]="{'stroke': 'lightgrey', 'color': 'lightgrey'}"></fa-icon>&nbsp;{{fund.fundort}}
                             </td>
                           </tr>
                         </tbody>
