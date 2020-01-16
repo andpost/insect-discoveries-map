@@ -43,3 +43,11 @@ Run 'npm install rxjs-compat --save' inside project folder.
 npm install --save ngx-lightbox
 
 See also https://www.npmjs.com/package/ngx-lightbox
+
+## Adding Font Awesome
+
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/free-solid-svg-icons
+npm install @fortawesome/angular-fontawesome@0.5.x
+
+See also https://www.npmjs.com/package/@fortawesome/angular-fontawesome and https://fontawesome.com/how-to-use/on-the-web/using-with/angular
