@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Initially load all modules
 
-After checkout, run `ng install` to initially load all node modules.
+After checkout, run `npm install` to initially load all node modules.
 
 ## Development server
 
