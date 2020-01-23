@@ -7,7 +7,6 @@ import { DataService } from '../app.dataservice';
 declare let L;
 
 @Component({
-  providers: [DataService],
   selector: 'app-map-page',
   templateUrl: './map-page.component.html',
   styleUrls: ['./map-page.component.css']

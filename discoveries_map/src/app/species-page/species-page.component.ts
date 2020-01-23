@@ -8,7 +8,7 @@ import { Lightbox } from 'ngx-lightbox';
 import { ArrayType } from '@angular/compiler';
 
 @Component({
-  providers: [DataService, Lightbox],
+  providers: [Lightbox],
   selector: 'app-species-page',
   templateUrl: './species-page.component.html',
   styleUrls: ['./species-page.component.css']

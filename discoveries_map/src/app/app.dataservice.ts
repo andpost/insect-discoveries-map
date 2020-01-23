@@ -4,7 +4,9 @@ import { Art } from "./art-entity";
 import { Beobachtung } from "./beobachtung-entity";
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+}) 
 export class DataService {
 
     constructor(private http: HttpClient) {
