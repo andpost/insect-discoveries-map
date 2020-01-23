@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,6 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 })
 @Injectable()
 export class AppComponent implements OnInit {
-  faHome = faHome;
 
   constructor() {
     

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { faCalendarAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
 declare let L;
@@ -30,6 +31,8 @@ export class MapPageComponent implements OnInit {
   selectedOrdnung : string;
   selectedBeobachter : string;
   SHOW_ALL : string = "<ALLE>";
+  faCalendarAlt = faCalendarAlt;
+  faMapMarkerAlt = faMapMarkerAlt;
 
   constructor(private dataService: DataService) {
     this.listInsektenFunde();
@@ -134,11 +137,12 @@ export class MapPageComponent implements OnInit {
     var htmlArt = "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b><br /><i>" + insekt.art.name + "</i><br />" + insekt.art.ordnung;
 
     var html = "<table><tr><td>" + htmlArt + "</td><td style=\"text-align: right;\">" + htmlImg + "</td></tr>"
-      + "<tr><td colspan=\"2\">" + this.dataService.formatDateString(insekt.datum) + " - " + insekt.stadium + "</td></tr>"
-      + "<tr><td colspan=\"2\">Fundort: " + this.encodeHtmlEntities(insekt.fundort) + "</td></tr>"
-      + "<tr><td colspan=\"2\">Beobachter: " + this.encodeHtmlEntities(insekt.beobachter) + "</td></tr>"
-      + "<tr><td colspan=\"2\">Anzahl: " + insekt.anzahl + "</td></tr>"
-      + "<tr><td colspan=\"2\">Fundpr&uuml;fung: " + insekt.pruefung; + "</td></tr>"
+      + "<tr><td colspan=\"2\"><i class=\"fa fa-calendar fa-fw\" style=\"color: #999;\"></i> " 
+      + this.dataService.formatDateString(insekt.datum) + " - " + insekt.stadium + "</td></tr>"
+      + "<tr><td colspan=\"2\"><i class=\"fa fa-map-marker fa-fw\" style=\"color: #999;\"></i> " + this.encodeHtmlEntities(insekt.fundort) + "</td></tr>"
+      + "<tr><td colspan=\"2\"><i class=\"fa fa-binoculars fa-fw\" style=\"color: #999;\"></i> " + this.encodeHtmlEntities(insekt.beobachter) + "</td></tr>"
+      + "<tr><td colspan=\"2\"><i class=\"fa fa-hashtag fa-fw\" style=\"color: #999;\"></i> " + insekt.anzahl + "</td></tr>"
+      + "<tr><td colspan=\"2\"><i class=\"fa fa-check fa-fw\" style=\"color: #999;\"></i> " + insekt.pruefung; + "</td></tr>"
       + "</table>"
 
       return html;

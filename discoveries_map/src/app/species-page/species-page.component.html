@@ -20,7 +20,7 @@
                                         src="assets/images/{{art.artfoto.iconPfad}}" 
                                         alt="Icon" class="img-thumbnail"
                                         style="margin-right: 10px;" />
-                                    <fa-icon *ngIf="art.artfoto == null || art.artfoto.iconPfad == null" [icon]="faImage" size="2x" [border]="true" [fixedWidth]="true"></fa-icon>
+                                    <i *ngIf="art.artfoto == null || art.artfoto.iconPfad == null" class="fa fa-image fa-2x"></i>
                                 </td>
                                 <td>
                                     <b>{{art.nameDeutsch}}</b><small *ngIf="art.familie != null" class="text-muted">&nbsp;({{art.familie}})</small><br />
@@ -52,9 +52,9 @@
                         <tbody>
                           <tr *ngFor="let fund of artenFunde; let j = index">
                             <td>
-                                <fa-icon [icon]="faCalendarAlt" [styles]="{'stroke': 'lightgrey', 'color': 'lightgrey'}"></fa-icon>
+                                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>
                                 {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small><br />
-                                <fa-icon [icon]="faMapMarkerAlt" [styles]="{'stroke': 'lightgrey', 'color': 'lightgrey'}"></fa-icon>&nbsp;{{fund.fundort}}
+                                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}
                             </td>
                           </tr>
                         </tbody>
