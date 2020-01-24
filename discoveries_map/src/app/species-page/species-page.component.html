@@ -1,10 +1,23 @@
 <div class="container">
     <div class="form-group">
+        <button class="btn btn-outline-primary btn-sm" data-toggle="collapse" href="#collapseOrdnungFilter" aria-expanded="false" aria-controls="collapseOrdnungFilter">
+            Ordnung filtern
+        </button>
+    </div>
+    <div class="form-group collapse" id="collapseOrdnungFilter">
+        <!--
         <h6>Ordnung ausw&auml;hlen:</h6>
         <select class="form-control form-control-sm" (change)="filterSelectedOrdnung($event.target.value)">
             <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
         </select>
-        &nbsp;
+        -->
+        <div *ngFor="let entry of selectedOrdnungen | keyvalue" class="custom-control custom-checkbox custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="{{entry.key}}" 
+                (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked>
+            <label class="custom-control-label" for="{{entry.key}}">{{entry.key}}</label>
+        </div>
+    </div>
+    <div class="form-group">
         <input class="form-control form-control-sm" type="text" placeholder="Suche (Artname oder Familie)..." (keyup)="filterBySearch($event.target.value)">
     </div>
     <div class="accordion" id="accordionArten">

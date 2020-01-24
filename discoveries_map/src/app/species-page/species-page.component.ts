@@ -21,7 +21,8 @@ export class SpeciesPageComponent implements OnInit {
   selectedArt : Art;
   artenFunde : Beobachtung[];
   artenFotos : Artfoto[];
-  selectedOrdnung : string;
+  //selectedOrdnung : string;
+  selectedOrdnungen : Map<string, boolean> = new Map();
 
   constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadArtList();
@@ -36,18 +37,27 @@ export class SpeciesPageComponent implements OnInit {
 
   showArten(arten : Art[]) {
     this.arten = [];
-    if (this.selectedOrdnung == null) {
-      this.selectedOrdnung = arten[0].ordnung;
-    }
+    //if (this.selectedOrdnung == null) {
+    //  this.selectedOrdnung = arten[0].ordnung;
+    //}
 
     arten.forEach(art => {
-      if (art.ordnung == this.selectedOrdnung) {
+      // wenn noch nicht vorhanden, dann nun einfügen
+      if (this.selectedOrdnungen.get(art.ordnung) == null) {
+        this.selectedOrdnungen.set(art.ordnung, true);
+      }
+      //if (art.ordnung == this.selectedOrdnung) {
+      //  this.arten.push(art);
+      //}
+      if (this.selectedOrdnungen.get(art.ordnung)) {
         this.arten.push(art);
       }
 
-      if (!this.ordnungList.includes(art.ordnung)) {
-        this.ordnungList.push(art.ordnung);
-      }
+      //if (!this.ordnungList.includes(art.ordnung)) {
+      //  this.ordnungList.push(art.ordnung);
+      //}
+
+      
     });
 
     this.filteredArten = this.arten;
@@ -81,8 +91,9 @@ export class SpeciesPageComponent implements OnInit {
     
   }
 
-  filterSelectedOrdnung(selectedOrdnung: string) {
-    this.selectedOrdnung = selectedOrdnung;
+  filterSelectedOrdnung(ordnung: string, isSelected: boolean) {
+    //this.selectedOrdnung = ordnung;
+    this.selectedOrdnungen.set(ordnung, isSelected);
     this.loadArtList();
   }
 
