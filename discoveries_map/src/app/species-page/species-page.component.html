@@ -9,7 +9,6 @@
             <input *ngIf="entry.value; elseBlock"
                 type="checkbox" class="custom-control-input" id="{{entry.key}}" 
                 (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked="checked">
-            <div *ngIf="condition; else elseBlock">Content to render when condition is true.</div>
             <ng-template #elseBlock>
                     <input 
                     type="checkbox" class="custom-control-input" id="{{entry.key}}" 
