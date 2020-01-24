@@ -40,7 +40,11 @@ See also https://www.npmjs.com/package/ngx-lightbox
 
 Download Font Awesome Free package at https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself
 
-Unpack to assets/
+Unpack to /src/assets/
+
+## Demo data
+
+There are two demo data files under /src/assets/ (*_sample.json). Remove the '_sample' from the name to use them to show some data.
 
 ### Running unit tests
 
