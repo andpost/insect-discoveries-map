@@ -38,7 +38,9 @@ See also https://www.npmjs.com/package/ngx-lightbox
 
 ## Adding Font Awesome
 
-Download Font Awesome Free package at https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself
+Download Font Awesome Free package at https://fontawesome.com/v4.7.0/get-started/
+
+Version 4 is recommended, version 5 didn't worked at all places.
 
 Unpack to /src/assets/
 

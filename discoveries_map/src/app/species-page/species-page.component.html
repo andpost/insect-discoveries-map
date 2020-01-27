@@ -5,15 +5,15 @@
         </button>
     </div>
     <div class="form-group collapse" id="collapseOrdnungFilter">
-        <!--
-        <h6>Ordnung ausw&auml;hlen:</h6>
-        <select class="form-control form-control-sm" (change)="filterSelectedOrdnung($event.target.value)">
-            <option *ngFor="let ordnung of ordnungList" value="{{ordnung}}">{{ordnung}}</option>
-        </select>
-        -->
         <div *ngFor="let entry of selectedOrdnungen | keyvalue" class="custom-control custom-checkbox custom-control-inline">
-            <input type="checkbox" class="custom-control-input" id="{{entry.key}}" 
-                (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked>
+            <input *ngIf="entry.value; elseBlock"
+                type="checkbox" class="custom-control-input" id="{{entry.key}}" 
+                (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked="checked">
+            <ng-template #elseBlock>
+                    <input 
+                    type="checkbox" class="custom-control-input" id="{{entry.key}}" 
+                    (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)">
+            </ng-template>
             <label class="custom-control-label" for="{{entry.key}}">{{entry.key}}</label>
         </div>
     </div>
