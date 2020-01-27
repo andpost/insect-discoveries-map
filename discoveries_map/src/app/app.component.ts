@@ -1,5 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,15 +8,13 @@ import { Component, OnInit, Injectable } from '@angular/core';
 })
 @Injectable()
 export class AppComponent implements OnInit {
+  title = 'funde-map';
 
   constructor() {
-    
   }
 
   ngOnInit() {
-    
+
   }
 
-  
-  
 }

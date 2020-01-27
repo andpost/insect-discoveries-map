@@ -1,5 +1,5 @@
 import {RouterModule} from "@angular/router";
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title  } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -12,6 +12,8 @@ import { MapPageComponent } from './map-page/map-page.component';
 import { IndexPageComponent } from './index-page/index-page.component';
 import { ImpressumPageComponent } from './impressum-page/impressum-page.component';
 import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.component';
+
+declare var require: any;
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.co
     AppRoutingModule,
     LightboxModule
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../app.dataservice';
-import { Art } from "../art-entity";
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../app.dataservice';
+import {Art} from '../art-entity';
 
 @Component({
   selector: 'app-index-page',
@@ -9,14 +9,14 @@ import { Art } from "../art-entity";
 })
 export class IndexPageComponent implements OnInit {
 
-  anzahlArten : number;
-  anzahlOrdnungen : number;
-  anzahlBeobachtungen : number;
-  anzahlArtenMitFotos : number;
-  anzahlFotos : number;
-  artenProOrdnung : Map<string, number> = new Map();
+  anzahlArten: number;
+  anzahlOrdnungen: number;
+  anzahlBeobachtungen: number;
+  anzahlArtenMitFotos: number;
+  anzahlFotos: number;
+  artenProOrdnung: Map<string, number> = new Map();
 
-  constructor(private dataService: DataService) { 
+  constructor(private dataService: DataService) {
     this.loadDataAndCreateStatistics();
   }
 
@@ -27,13 +27,13 @@ export class IndexPageComponent implements OnInit {
     this.dataService.getArten().subscribe((data: Art[]) => this.createStatistics(data));
   }
 
-  createStatistics(arten : Art[]) {
+  createStatistics(arten: Art[]) {
     this.anzahlArten = arten.length;
     this.anzahlBeobachtungen = 0;
     this.anzahlFotos = 0;
     this.anzahlArtenMitFotos = 0;
 
-    var ordnungList = [];
+    const ordnungList = [];
 
     arten.forEach(art => {
       if (!this.artenProOrdnung.has(art.ordnung)) {
@@ -41,7 +41,7 @@ export class IndexPageComponent implements OnInit {
       }
 
       var anzahlArtenProOrdnung = this.artenProOrdnung.get(art.ordnung);
-      anzahlArtenProOrdnung ++;
+      anzahlArtenProOrdnung++;
       this.artenProOrdnung.set(art.ordnung, anzahlArtenProOrdnung);
 
       if (art.beobachtungen != null) {
@@ -57,7 +57,7 @@ export class IndexPageComponent implements OnInit {
         });
 
         if (hasFotos) {
-          this.anzahlArtenMitFotos ++;
+          this.anzahlArtenMitFotos++;
         }
       }
       if (!ordnungList.includes(art.ordnung)) {

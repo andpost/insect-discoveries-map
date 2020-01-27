@@ -23,7 +23,7 @@ export class SpeciesPageComponent implements OnInit {
   artenFotos : Artfoto[];
   selectedOrdnungen : Map<string, boolean> = new Map();
 
-  constructor(private dataService: DataService, private lightbox: Lightbox) { 
+  constructor(private dataService: DataService, private lightbox: Lightbox) {
     this.loadArtList();
   }
 
@@ -34,11 +34,11 @@ export class SpeciesPageComponent implements OnInit {
     this.dataService.getArten().subscribe((data: Art[]) => this.showArten(data));
   }
 
-  showArten(arten : Art[]) {
+  showArten(arten: Art[]) {
     this.arten = [];
 
     arten.forEach(art => {
-      // wenn noch nicht vorhanden, dann nun einfÃ¼gen
+      // wenn noch nicht vorhanden, dann nun einfügen
       if (this.selectedOrdnungen.get(art.ordnung) == null) {
         this.selectedOrdnungen.set(art.ordnung, true);
       }
@@ -69,14 +69,14 @@ export class SpeciesPageComponent implements OnInit {
 
           foto.src = "assets/images/" + foto.bildPfad;
           foto.thumb = "assets/images/" + foto.thumbnailPfad;
-          foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
+          foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " +
             this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";
-          
+
           this.artenFotos.push(foto);
         });
       }
     });
-    
+
   }
 
   filterSelectedOrdnung(ordnung: string, isSelected: boolean) {
@@ -88,7 +88,7 @@ export class SpeciesPageComponent implements OnInit {
     // open lightbox
     this.lightbox.open(this.artenFotos, index);
   }
- 
+
   close(): void {
     // close lightbox programmatically
     this.lightbox.close();
@@ -109,7 +109,7 @@ export class SpeciesPageComponent implements OnInit {
     });
   }
 
-  isMatchForArt(art: Art, search: string) : boolean {
+  isMatchForArt(art: Art, search: string): boolean {
     var nameLC = art.name.toLocaleLowerCase();
     var nameDeutschLC = art.nameDeutsch.toLocaleLowerCase();
     var searchLC = search.toLocaleLowerCase();
@@ -119,7 +119,7 @@ export class SpeciesPageComponent implements OnInit {
       familieLC = art.familie.toLocaleLowerCase();
     }
 
-    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC) 
+    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC)
       || nameDeutschLC.startsWith(searchLC) || nameDeutschLC.includes(searchLC)
       || familieLC.startsWith(searchLC) || familieLC.includes(searchLC);
   }

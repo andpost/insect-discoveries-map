@@ -1,5 +1,7 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [RouterTestingModule, FontAwesomeModule]
     }).compileComponents();
   }));
 
@@ -26,6 +29,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('funde-map app is running!');
+    expect(compiled.querySelector('.navbar-nav a').textContent).toContain('Karte');
   });
 });

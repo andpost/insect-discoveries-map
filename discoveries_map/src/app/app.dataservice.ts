@@ -5,7 +5,7 @@ import { Beobachtung } from "./beobachtung-entity";
 
 
 @Injectable({
-  Â Â providedIn:Â 'root'
+    providedIn: 'root'
 }) 
 export class DataService {
 
@@ -31,20 +31,20 @@ export class DataService {
         "Aug", "Sep", "Okt",
         "Nov", "Dez"
       ];
-  
+
       var dateSplit = date.split("-");
-    
+
       var day = dateSplit[2];
       var monthNumber = dateSplit[1];
-  
+
       if (monthNumber.startsWith("0")) {
         monthNumber = monthNumber.charAt(1);
       }
 
       var monthIndex = parseInt(monthNumber) -1;
-  
+
       var year = dateSplit[0];
-    
+
       return day + '. ' + monthNames[monthIndex] + ' ' + year;
     }
 }
