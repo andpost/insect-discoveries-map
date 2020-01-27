@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
-import { Art } from "../art-entity";
-import { Beobachtung } from "../beobachtung-entity";
-import { DataService } from '../app.dataservice';
-import { Artfoto } from '../artfoto-entity';
-import { Lightbox } from 'ngx-lightbox';
-import { ArrayType } from '@angular/compiler';
-import { faImage, faCalendarAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {Art} from '../art-entity';
+import {Beobachtung} from '../beobachtung-entity';
+import {DataService} from '../app.dataservice';
+import {Artfoto} from '../artfoto-entity';
+import {Lightbox} from 'ngx-lightbox';
+import {ArrayType} from '@angular/compiler';
+import {faImage, faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  providers: [DataService, Lightbox],
+  providers: [Lightbox],
   selector: 'app-species-page',
   templateUrl: './species-page.component.html',
   styleUrls: ['./species-page.component.css']
@@ -17,17 +17,17 @@ import { faImage, faCalendarAlt, faMapMarkerAlt } from '@fortawesome/free-solid-
 export class SpeciesPageComponent implements OnInit {
 
   ordnungList = [];
-  arten : Art[];
-  filteredArten : Art[];
-  selectedArt : Art;
-  artenFunde : Beobachtung[];
-  artenFotos : Artfoto[];
-  selectedOrdnung : string;
+  arten: Art[];
+  filteredArten: Art[];
+  selectedArt: Art;
+  artenFunde: Beobachtung[];
+  artenFotos: Artfoto[];
+  selectedOrdnung: string;
   faImage = faImage;
   faCalendarAlt = faCalendarAlt;
   faMapMarkerAlt = faMapMarkerAlt;
 
-  constructor(private dataService: DataService, private lightbox: Lightbox) { 
+  constructor(private dataService: DataService, private lightbox: Lightbox) {
     this.loadArtList();
   }
 
@@ -38,7 +38,7 @@ export class SpeciesPageComponent implements OnInit {
     this.dataService.getArten().subscribe((data: Art[]) => this.showArten(data));
   }
 
-  showArten(arten : Art[]) {
+  showArten(arten: Art[]) {
     this.arten = [];
     if (this.selectedOrdnung == null) {
       this.selectedOrdnung = arten[0].ordnung;
@@ -75,14 +75,14 @@ export class SpeciesPageComponent implements OnInit {
 
           foto.src = "assets/images/" + foto.bildPfad;
           foto.thumb = "assets/images/" + foto.thumbnailPfad;
-          foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
+          foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " +
             this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";
-          
+
           this.artenFotos.push(foto);
         });
       }
     });
-    
+
   }
 
   filterSelectedOrdnung(selectedOrdnung: string) {
@@ -94,7 +94,7 @@ export class SpeciesPageComponent implements OnInit {
     // open lightbox
     this.lightbox.open(this.artenFotos, index);
   }
- 
+
   close(): void {
     // close lightbox programmatically
     this.lightbox.close();
@@ -115,7 +115,7 @@ export class SpeciesPageComponent implements OnInit {
     });
   }
 
-  isMatchForArt(art: Art, search: string) : boolean {
+  isMatchForArt(art: Art, search: string): boolean {
     var nameLC = art.name.toLocaleLowerCase();
     var nameDeutschLC = art.nameDeutsch.toLocaleLowerCase();
     var searchLC = search.toLocaleLowerCase();
@@ -125,7 +125,7 @@ export class SpeciesPageComponent implements OnInit {
       familieLC = art.familie.toLocaleLowerCase();
     }
 
-    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC) 
+    return nameLC.startsWith(searchLC) || nameLC.includes(searchLC)
       || nameDeutschLC.startsWith(searchLC) || nameDeutschLC.includes(searchLC)
       || familieLC.startsWith(searchLC) || familieLC.includes(searchLC);
   }

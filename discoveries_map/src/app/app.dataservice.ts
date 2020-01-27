@@ -4,7 +4,9 @@ import { Art } from "./art-entity";
 import { Beobachtung } from "./beobachtung-entity";
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
 
     constructor(private http: HttpClient) {
@@ -29,20 +31,20 @@ export class DataService {
         "Aug", "Sep", "Okt",
         "Nov", "Dez"
       ];
-  
+
       var dateSplit = date.split("-");
-    
+
       var day = dateSplit[2];
       var monthNumber = dateSplit[1];
-  
+
       if (monthNumber.startsWith("0")) {
         monthNumber = monthNumber.charAt(1);
       }
 
       var monthIndex = parseInt(monthNumber) -1;
-  
+
       var year = dateSplit[0];
-    
+
       return day + '. ' + monthNames[monthIndex] + ' ' + year;
     }
 }

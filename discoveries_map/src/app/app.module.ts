@@ -1,5 +1,5 @@
 import {RouterModule} from "@angular/router";
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title  } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,6 +11,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SpeciesPageComponent } from './species-page/species-page.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { IndexPageComponent } from './index-page/index-page.component';
+import {DataService} from "./app.dataservice";
+
+declare var require: any;
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { IndexPageComponent } from './index-page/index-page.component';
     LightboxModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

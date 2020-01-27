@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Beobachtung } from "../beobachtung-entity";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Beobachtung } from '../beobachtung-entity';
 import { DataService } from '../app.dataservice';
-declare let L;
+import { LeafletService } from '../leaflet.service';
+
 
 @Component({
-  providers: [DataService],
   selector: 'app-map-page',
   templateUrl: './map-page.component.html',
   styleUrls: ['./map-page.component.css']
@@ -21,27 +21,27 @@ export class MapPageComponent implements OnInit {
   markerIcon: any;
   markerIconGreen: any;
   beobachter: string;
-  htmlEntityMap : Map<string, string> = new Map();
+  htmlEntityMap: Map<string, string> = new Map();
   shownMarkers = new Array();
   artList = [];
   ordnungList = [];
   beobachterList = [];
-  selectedArt : string;
-  selectedOrdnung : string;
-  selectedBeobachter : string;
-  SHOW_ALL : string = "<ALLE>";
+  selectedArt: string;
+  selectedOrdnung: string;
+  selectedBeobachter: string;
+  SHOW_ALL: string = "<ALLE>";
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private leafletService: LeafletService) {
     this.listInsektenFunde();
 
     this.markerIcon = {
-      icon: L.icon({
+      icon: leafletService.L.icon({
         iconUrl: "assets/leaflet/images/marker-icon.png",
         shadowUrl: 'assets/leaflet/images/marker-shadow.png'
       })
     };
     this.markerIconGreen = {
-      icon: L.icon({
+      icon: leafletService.L.icon({
         iconUrl: "assets/leaflet/images/marker-icon-green.png",
         shadowUrl: 'assets/leaflet/images/marker-shadow.png'
       })
@@ -51,9 +51,9 @@ export class MapPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.map = L.map('map').setView([this.lat, this.lng], this.zoom);
+    this.map = this.leafletService.L.map('map').setView([this.lat, this.lng], this.zoom);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    this.leafletService.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
   }
@@ -76,7 +76,7 @@ export class MapPageComponent implements OnInit {
       if (this.isSelected(this.selectedArt, insekt.art.nameDeutsch) //
           && this.isSelected(this.selectedOrdnung, insekt.art.ordnung) //
           && this.isSelected(this.selectedBeobachter, insekt.beobachter)) {
-        var marker = L.marker([insekt.lat, insekt.lon], this.getMarkerIcon(insekt)).addTo(this.map);
+        var marker = this.leafletService.L.marker([insekt.lat, insekt.lon], this.getMarkerIcon(insekt)).addTo(this.map);
         marker.bindPopup(this.getMarkerPopupHtml(insekt));
         this.shownMarkers.push(marker);
 
@@ -90,7 +90,7 @@ export class MapPageComponent implements OnInit {
           this.beobachterList.push(insekt.beobachter);
         }
       }
-      
+
     });
     this.artList.sort();
     this.ordnungList.sort();
@@ -103,9 +103,9 @@ export class MapPageComponent implements OnInit {
 
   /**
    * Checks if the stringToCheck value is selected in the UI. Returns also true if this.SHOW_ALL is selected.
-   * 
+   *
    * @param selection Selection in UI.
-   * @param stringToCheck 
+   * @param stringToCheck
    */
   isSelected(selection : string, stringToCheck : string) : boolean {
     if (selection == null || selection == this.SHOW_ALL || selection == stringToCheck) {
@@ -174,5 +174,5 @@ export class MapPageComponent implements OnInit {
     this.shownMarkers.forEach(marker => this.map.removeLayer(marker));
   }
 
-  
+
 }
