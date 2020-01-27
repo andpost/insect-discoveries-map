@@ -9,10 +9,21 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" routerLink="karten" title="Karte">Karte</a>
-                <a class="nav-item nav-link active" routerLink="arten">Insektenarten</a>
+                <a class="nav-item nav-link active" routerLink="arten" title="&Uuml;bersicht &uuml;ber Insektenarten">Insektenarten</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        &Uuml;ber
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="impressum">Impressum</a>
+                    </div>
+                </li>
             </div>
         </div>
     </nav>
 </div>
 &nbsp;
 <router-outlet></router-outlet>
+<div class="container h-25 text-center">
+    <small><a routerLink="impressum">Impressum</a></small>
+</div>
