@@ -1,2 +1,22 @@
 <div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Beobachtungen nach Datum</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let beobachtung of beobachtungen; let j = index">
+            <td>
+                <b>{{beobachtung.art.nameDeutsch}}</b>&nbsp;
+                <small class="text-muted"><em>{{beobachtung.art.name}}</em></small><br />
+                <small class="text-muted"><em>{{beobachtung.art.ordnung}}</em></small>
+                <small *ngIf="beobachtung.art.familie != null" class="text-muted"> / {{beobachtung.art.familie}}</small><br />
+                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>
+                {{beobachtung.datumFormattiert}} <small class="text-muted"><em>({{beobachtung.beobachter}})</em></small><br />
+                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{beobachtung.fundort}}
+            </td>
+          </tr>
+        </tbody>
+    </table>
 </div>
