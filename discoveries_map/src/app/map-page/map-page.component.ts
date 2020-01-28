@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { faCalendarAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
 declare let L;
@@ -30,8 +29,6 @@ export class MapPageComponent implements OnInit {
   selectedOrdnung : string;
   selectedBeobachter : string;
   SHOW_ALL : string = "<ALLE>";
-  faCalendarAlt = faCalendarAlt;
-  faMapMarkerAlt = faMapMarkerAlt;
 
   constructor(private dataService: DataService) {
     this.listInsektenFunde();
