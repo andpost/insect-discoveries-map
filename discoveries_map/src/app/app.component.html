@@ -11,8 +11,19 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="karten" title="Karte">Karte</a>
                 </li>
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" routerLink="arten" title="&Uuml;bersicht &uuml;ber Insektenarten">Insektenarten</a>
+                </li>
+                -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Beobachtungen
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" routerLink="arten">Nach Arten</a>
+                        <a class="dropdown-item" routerLink="beobachtungen">Nach Datum</a>
+                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

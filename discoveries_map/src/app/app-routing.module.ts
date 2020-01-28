@@ -4,6 +4,7 @@ import { IndexPageComponent } from './index-page/index-page.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { SpeciesPageComponent } from './species-page/species-page.component';
 import { ImpressumPageComponent } from './impressum-page/impressum-page.component';
+import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'arten',
     component: SpeciesPageComponent
+  },
+  {
+    path: 'beobachtungen',
+    component: DiscoveriesPageComponent
   },
   {
     path: 'impressum',
