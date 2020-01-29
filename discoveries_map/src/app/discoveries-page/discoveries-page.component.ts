@@ -10,6 +10,8 @@ import { DataService } from '../app.dataservice';
 export class DiscoveriesPageComponent implements OnInit {
 
   beobachtungen : Beobachtung[];
+  fromDate : string;
+  toDate : string;
 
   constructor(private dataService: DataService) { 
     this.loadDiscoveries();
@@ -26,19 +28,54 @@ export class DiscoveriesPageComponent implements OnInit {
     this.beobachtungen = [];
 
     beobachtungen.forEach(beobachtung => {
-      beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
-
-      this.beobachtungen.push(beobachtung);
-    });
-
-    this.beobachtungen.sort((a, b) => {
-      if (a.datum < b.datum) {
-        return -1;
-      } else if (a.datum > b.datum) {
-        return 1;
+      if (this.fromDate != null && this.toDate != null) {
+        if (beobachtung.datum >= this.fromDate && beobachtung.datum <= this.toDate) {
+          beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+          this.beobachtungen.push(beobachtung);
+        }
+      } else {
+        beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+        this.beobachtungen.push(beobachtung);
       }
-      return 0;
     });
+    
+    this.sortList("ASC");
+    
+    // nachdem wir aufsteigend sortiert haben, können wir das Start- und Endedatum ermitteln
+    if (this.fromDate == null) {
+      this.fromDate = this.beobachtungen[0].datum;
+    }
+    if (this.toDate == null) {
+      this.toDate = this.beobachtungen[this.beobachtungen.length-1].datum;
+    }
+  }
+
+  sortList(sortorder: string) {
+    this.beobachtungen.sort((a, b) => {
+      var result = 0;
+
+      if (a.datum < b.datum) {
+        result = -1;
+      } else if (a.datum > b.datum) {
+        result = 1;
+      }
+
+      if (sortorder == "DESC") {
+        result *= -1;
+      }
+      
+      return result;
+    });
+  }
+
+  filterByFromDate(fromDate) {
+    this.fromDate = fromDate;
+    this.loadDiscoveries();
+  }
+
+  filterByToDate(toDate) {
+    this.toDate = toDate;
+    this.loadDiscoveries();
   }
 
 }

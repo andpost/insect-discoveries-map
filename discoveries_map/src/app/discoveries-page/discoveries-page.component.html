@@ -1,4 +1,23 @@
 <div class="container">
+    <form>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="inputFromDate">Von</label>
+                <input class="form-control" id="inputFromDate" type="date" value="{{fromDate}}" (change)="filterByFromDate($event.target.value)">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="inputToDate">Bis</label>
+                <input class="form-control" id="inputToDate" type="date" value="{{toDate}}" (change)="filterByToDate($event.target.value)">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="inputSortorder">Sortierung</label>
+                <select class="custom-select" id="inputSortorder" (change)="sortList($event.target.value)">
+                    <option value="ASC" selected>Aufsteigend</option>
+                    <option value="DESC">Absteigend</option>
+                </select>
+            </div>
+        </div>
+    </form>
     <table class="table table-striped">
         <thead>
             <tr>
