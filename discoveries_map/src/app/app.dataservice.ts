@@ -5,7 +5,7 @@ import { Beobachtung } from "./beobachtung-entity";
 
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
 export class DataService {
 

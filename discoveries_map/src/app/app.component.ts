@@ -1,4 +1,5 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import {Component, OnInit, Injectable} from '@angular/core';
+import {faHome} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -8,6 +9,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 })
 @Injectable()
 export class AppComponent implements OnInit {
+  title = 'funde-map';
   title = 'funde-map';
 
   constructor() {

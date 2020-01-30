@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
-import { Art } from "../art-entity";
-import { Beobachtung } from "../beobachtung-entity";
-import { DataService } from '../app.dataservice';
-import { Artfoto } from '../artfoto-entity';
-import { Lightbox } from 'ngx-lightbox';
-import { ArrayType } from '@angular/compiler';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {Art} from '../art-entity';
+import {Beobachtung} from '../beobachtung-entity';
+import {DataService} from '../app.dataservice';
+import {Artfoto} from '../artfoto-entity';
+import {Lightbox} from 'ngx-lightbox';
+import {ArrayType} from '@angular/compiler';
+import {faImage, faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   providers: [Lightbox],
@@ -16,12 +17,15 @@ import { ArrayType } from '@angular/compiler';
 export class SpeciesPageComponent implements OnInit {
 
   ordnungList = [];
-  arten : Art[];
-  filteredArten : Art[];
-  selectedArt : Art;
-  artenFunde : Beobachtung[];
-  artenFotos : Artfoto[];
-  selectedOrdnungen : Map<string, boolean> = new Map();
+  arten: Art[];
+  filteredArten: Art[];
+  selectedArt: Art;
+  artenFunde: Beobachtung[];
+  artenFotos: Artfoto[];
+  selectedOrdnung: string;
+  faImage = faImage;
+  faCalendarAlt = faCalendarAlt;
+  faMapMarkerAlt = faMapMarkerAlt;
 
   constructor(private dataService: DataService, private lightbox: Lightbox) {
     this.loadArtList();
