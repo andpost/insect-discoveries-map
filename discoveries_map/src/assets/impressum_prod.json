@@ -1,9 +1,9 @@
 {
-  "id": "test",
-  "name": "Max Muster",
-  "street": "Seamsstreet",
-  "postalcode": "environment.impressumPostalcode",
-  "city": "environment.impressumCity",
-  "email": "impressumEmail@prod",
-  "telephone": ""
+  "id": "prod",
+  "name": "Max Prod",
+  "street": "Prod Street",
+  "postalcode": "99999",
+  "city": "Prod City",
+  "email": "Prod@Prod.de",
+  "telephone": "+49000 / 000000000000"
 }

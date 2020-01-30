@@ -1,25 +1,25 @@
-import { Artfoto } from "./artfoto-entity";
-import { Beobachtung } from "./beobachtung-entity";
+import {Artfoto} from "./artfoto-entity";
+import {Beobachtung} from "./beobachtung-entity";
 
 export interface Art {
 
-    name : string;
-    
-    nameDeutsch : string;
+  name: string;
 
-    ordnung : string;
+  nameDeutsch: string;
 
-    familie : string;
+  ordnung: string;
 
-    urlWikipedia : string;
+  familie: string;
 
-    urlInsektenSachsen : string;
+  urlWikipedia: string;
 
-    urlSonstige : string;
+  urlInsektenSachsen: string;
 
-    urlVideo : string;
+  urlSonstige: string;
 
-    artfoto : Artfoto;
+  urlVideo: string;
 
-    beobachtungen : Beobachtung[];
+  artfoto: Artfoto;
+
+  beobachtungen: Beobachtung[];
 }

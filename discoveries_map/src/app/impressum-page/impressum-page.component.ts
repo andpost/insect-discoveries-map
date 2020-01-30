@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from './../../environments/environment';
+
 
 @Component({
   selector: 'app-impressum-page',
@@ -7,7 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImpressumPageComponent implements OnInit {
 
-  constructor() { }
+  name: string;
+  street: string;
+  postalcode: string;
+  city: string;
+  telephone: string;
+  email: string;
+
+  constructor() {
+    this.name = environment.impressumName;
+    this.street = environment.impressumStreet;
+    this.postalcode = environment.impressumPostalcode;
+    this.city = environment.impressumCity;
+    this.telephone = environment.impressumTelephone;
+    this.email = environment.impressumEmail;
+  }
 
   ngOnInit() {
   }

@@ -1,27 +1,27 @@
-import { Art } from "./art-entity";
-import { Artfoto } from './artfoto-entity';
+import {Art} from "./art-entity";
+import {Artfoto} from './artfoto-entity';
 
 export interface Beobachtung {
 
-    art : Art;
-    
-    datum: string;
+  art: Art;
 
-    datumFormattiert : string;
+  datum: string;
 
-    beobachter: string;
-    
-    lat: number;
-    
-    lon: number;
+  datumFormattiert: string;
 
-    fundort: string;
+  beobachter: string;
 
-    stadium: string;
+  lat: number;
 
-    anzahl: number;
+  lon: number;
 
-    pruefung: string;
+  fundort: string;
 
-    fotos: Artfoto[];
+  stadium: string;
+
+  anzahl: number;
+
+  pruefung: string;
+
+  fotos: Artfoto[];
 }

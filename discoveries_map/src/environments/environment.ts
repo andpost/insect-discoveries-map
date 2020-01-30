@@ -2,9 +2,21 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { Impressum } from '../app/impressum';
+import impressum from '../assets/impressum.json';
+
+const  impressumList: Impressum = impressum;
+
 export const environment = {
-  production: false
-};
+  production: false,
+    impressumName: impressumList.name,
+    impressumStreet: impressumList.street,
+    impressumPostalcode: impressumList.postalcode,
+    impressumCity: impressumList.city,
+    impressumTelephone: impressumList.telephone,
+    impressumEmail: impressumList.email,
+}
+;
 
 /*
  * For easier debugging in development mode, you can import the following file

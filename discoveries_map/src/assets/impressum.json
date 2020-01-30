@@ -1,0 +1,9 @@
+{
+  "id": "test",
+  "name": "Max Muster",
+  "street": "Test Street",
+  "postalcode": "99999",
+  "city": "Test City",
+  "email": "test@test.de",
+  "telephone": "+49000 / 000000000000"
+}
