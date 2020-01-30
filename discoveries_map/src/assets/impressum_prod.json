@@ -1,0 +1,9 @@
+{
+  "id": "test",
+  "name": "Max Muster",
+  "street": "Seamsstreet",
+  "postalcode": "environment.impressumPostalcode",
+  "city": "environment.impressumCity",
+  "email": "impressumEmail@prod",
+  "telephone": ""
+}
