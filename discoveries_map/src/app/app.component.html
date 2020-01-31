@@ -1,5 +1,20 @@
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div *ngIf="amountCarouselPictures > 0" id="headCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div *ngFor="let i of carouselPictureNumbers" [attr.class]="i==0 ? 'carousel-item active' : 'carousel-item'" data-interval="10000">
+                <img [attr.src]="'assets/images/01_base_images/carousel_' + i + '.jpg'" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#headCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Zur&uuml;ck</span>
+        </a>
+        <a class="carousel-control-next" href="#headCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Vor</span>
+        </a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0"><!-- py-0 sets the padding top and bottom to 0 -->
         <a class="navbar-brand" routerLink="">
             <i class="fa fa-home"></i>
         </a>
@@ -11,11 +26,6 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="karten" title="Karte">Karte</a>
                 </li>
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="arten" title="&Uuml;bersicht &uuml;ber Insektenarten">Insektenarten</a>
-                </li>
-                -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Beobachtungen
@@ -41,6 +51,6 @@
 </div>
 &nbsp;
 <router-outlet></router-outlet>
-<div class="container h-25 text-center">
+<div class="container text-center mb-1">
     <small><a routerLink="impressum">Impressum</a></small>
 </div>

@@ -48,6 +48,14 @@ Unpack to /src/assets/
 
 There are two demo data files under /src/assets/ (*_sample.json). Remove the '_sample' from the name to use them to show some data.
 
+## Carousel on top of navigation
+
+Currently the carousel (see app.component) displays 8 pictures. The amount is configured in the code in the constructor of the component (see amountCarouselPictures). You can use as many pictures you like. Just change this number to the needed value.
+
+Then places these pictures in /assets/images/01_base_images/ and name them carousel_[num].jpg where num is a value from 0 to amountCarouselPictures-1.
+
+**TODO** number must be put to some property file.
+
 ### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
