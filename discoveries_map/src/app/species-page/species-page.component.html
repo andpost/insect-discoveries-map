@@ -6,7 +6,7 @@
     </div>
     <div class="form-group collapse" id="collapseOrdnungFilter">
         <div *ngFor="let entry of selectedOrdnungen | keyvalue" class="custom-control custom-checkbox custom-control-inline">
-            <input *ngIf="entry.value; elseBlock"
+            <input *ngIf="entry.value; else elseBlock"
                 type="checkbox" class="custom-control-input" id="{{entry.key}}" 
                 (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked="checked">
             <ng-template #elseBlock>
