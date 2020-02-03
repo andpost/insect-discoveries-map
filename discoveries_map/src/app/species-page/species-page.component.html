@@ -5,16 +5,28 @@
         </button>
     </div>
     <div class="form-group collapse" id="collapseOrdnungFilter">
-        <div *ngFor="let entry of selectedOrdnungen | keyvalue" class="custom-control custom-checkbox custom-control-inline">
-            <input *ngIf="entry.value; else elseBlock"
+        <div class="form-row">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button class="btn btn-light" (click)="selectAllOrdnungen(true)">
+                    Alles
+                </button>
+                <button class="btn btn-light" (click)="selectAllOrdnungen(false)">
+                    Nichts
+                </button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div *ngFor="let entry of selectedOrdnungen | keyvalue" class="custom-control custom-checkbox custom-control-inline">
+                <input *ngIf="entry.value; else elseBlock"
                 type="checkbox" class="custom-control-input" id="{{entry.key}}" 
                 (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked="checked">
-            <ng-template #elseBlock>
+                <ng-template #elseBlock>
                     <input 
                     type="checkbox" class="custom-control-input" id="{{entry.key}}" 
                     (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)">
-            </ng-template>
-            <label class="custom-control-label" for="{{entry.key}}">{{entry.key}}</label>
+                </ng-template>
+                <label class="custom-control-label" for="{{entry.key}}">{{entry.key}}</label>
+            </div>
         </div>
     </div>
     <div class="form-group">

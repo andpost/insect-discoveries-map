@@ -84,6 +84,13 @@ export class SpeciesPageComponent implements OnInit {
     this.loadArtList();
   }
 
+  selectAllOrdnungen(isSelected: boolean) {
+    this.selectedOrdnungen.forEach((value: boolean, key: string) => {
+      this.selectedOrdnungen.set(key, isSelected);
+    });
+    this.loadArtList();
+  }
+
   open(index: number): void {
     // open lightbox
     this.lightbox.open(this.artenFotos, index);
