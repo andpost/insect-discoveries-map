@@ -43,8 +43,7 @@
                                 <td>
                                     <img *ngIf="art.artfoto != null && art.artfoto.iconPfad != null" 
                                         src="assets/images/{{art.artfoto.iconPfad}}" 
-                                        alt="Icon" class="img-thumbnail"
-                                        style="margin-right: 10px;" />
+                                        alt="Icon" class="img-thumbnail art-icon" />
                                     <i *ngIf="art.artfoto == null || art.artfoto.iconPfad == null" class="fa fa-image fa-2x"></i>
                                 </td>
                                 <td>
