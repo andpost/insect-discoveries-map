@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { HttpClient } from  "@angular/common/http";
 import { Art } from "./art-entity";
 import { Beobachtung } from "./beobachtung-entity";
+import { Impressum } from "./impressum-entity";
 
 
 @Injectable({
@@ -18,6 +19,10 @@ export class DataService {
 
     getArten() {
       return this.http.get<Art[]>('assets/arten.json');
+    }
+
+    getImpressumData(sourcePath : string) {
+      return this.http.get<Impressum>(sourcePath);
     }
 
     getYearFromDateString(date : string) {

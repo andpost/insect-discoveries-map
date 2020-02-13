@@ -4,6 +4,10 @@
 /dist
 /tmp
 /out-tsc
+
+# backup
+/backup
+
 # Only exists if Bazel was run
 /bazel-out
 
@@ -44,3 +48,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# external libs
+/src/assets/font-awesome-4.7.0
+
+# production data
+/src/assets/images
+/src/assets/impressum/data_prod.json
+/src/assets/impressum/impressum.pdf
+/src/assets/arten.json
+/src/assets/beobachtungen.json
