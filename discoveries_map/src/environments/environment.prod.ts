@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  impressumDataSource: "assets/impressum/data_prod.json"
 };

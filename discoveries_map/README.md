@@ -56,6 +56,10 @@ Then places these pictures in /assets/images/01_base_images/ and name them carou
 
 **TODO** number must be put to some property file.
 
+## Impressum data
+
+For production data to show on the impressum page, add /src/assets/impressum/data-prod.json file (see the data-dev.json file for possible content).
+
 ### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
