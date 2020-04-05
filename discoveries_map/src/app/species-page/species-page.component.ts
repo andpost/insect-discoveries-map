@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer} from '@angular/platform-browser';
 import { Observable } from "rxjs";
 import { Art } from "../art-entity";
 import { Beobachtung } from "../beobachtung-entity";
@@ -23,7 +24,7 @@ export class SpeciesPageComponent implements OnInit {
   artenFotos : Artfoto[];
   selectedOrdnungen : Map<string, boolean> = new Map();
 
-  constructor(private dataService: DataService, private lightbox: Lightbox) { 
+  constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer) { 
     this.loadArtList();
   }
 
@@ -129,5 +130,14 @@ export class SpeciesPageComponent implements OnInit {
     return nameLC.startsWith(searchLC) || nameLC.includes(searchLC) 
       || nameDeutschLC.startsWith(searchLC) || nameDeutschLC.includes(searchLC)
       || familieLC.startsWith(searchLC) || familieLC.includes(searchLC);
+  }
+
+  /**
+   * To use '&copy;' in a title attribute for img tags, we have to convert it - its not converted due to security reasons.
+   * 
+   * @param imgTitle 
+   */
+  convertBackCopyRightEntity(imgTitle: string) {
+    return imgTitle.replace('&copy;', '©');
   }
 }
