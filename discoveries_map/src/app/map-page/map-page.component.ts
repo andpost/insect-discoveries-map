@@ -18,7 +18,6 @@ export class MapPageComponent implements OnInit {
   zoom: number = 9;
   map: any;
   markerIcon: any;
-  markerIconGreen: any;
   beobachter: string;
   htmlEntityMap : Map<string, string> = new Map();
   shownMarkers = new Array();
@@ -36,12 +35,6 @@ export class MapPageComponent implements OnInit {
     this.markerIcon = {
       icon: L.icon({
         iconUrl: "assets/leaflet/images/marker-icon.png",
-        shadowUrl: 'assets/leaflet/images/marker-shadow.png'
-      })
-    };
-    this.markerIconGreen = {
-      icon: L.icon({
-        iconUrl: "assets/leaflet/images/marker-icon-green.png",
         shadowUrl: 'assets/leaflet/images/marker-shadow.png'
       })
     };
@@ -114,12 +107,6 @@ export class MapPageComponent implements OnInit {
   }
 
   getMarkerIcon(insekt: Beobachtung) {
-    if (this.beobachter == null) {
-      this.beobachter = insekt.beobachter;
-    }
-    if (this.beobachter != insekt.beobachter) {
-      return this.markerIconGreen;
-    }
     return this.markerIcon;
   }
 
