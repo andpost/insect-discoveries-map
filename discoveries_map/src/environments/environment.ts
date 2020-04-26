@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  impressumDataSource: "assets/impressum/data_dev.json"
+  impressumDataSource: "assets/impressum/data_dev.json",
+  amountCarouselPictures: 9
 };
 
 /*
