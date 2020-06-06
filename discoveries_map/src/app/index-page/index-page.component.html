@@ -1,6 +1,8 @@
 <div class="container">
     <div class="jumbotron">
         <h3 class="text-center">Insektenbeobachtungen</h3>
+        <h6 class="text-center text-muted">Letztes Update: 06.06.2020<br /><br /></h6>
+
         <h5 class="text-center text-muted">Statistiken</h5>
 
         <p class="text-center">
@@ -14,14 +16,20 @@
             <br /><br />
             Insgesamt sind <span class="badge badge-success">{{anzahlFotos}}</span> Fotos zu allen Beobachtungen gepflegt.
         </p>
+        <h5 class="text-center text-muted">{{chartTitle}}</h5>
+        <div class="d-flex justify-content-center">
+            <google-chart [type]="chartType" [data]="chartData" [columns]="chartColumnNames" [width]="chartWidth" [height]="chartHeight">
+            </google-chart>
+        </div>
 
+        <!--
         <ul>
             <li *ngFor="let entry of artenProOrdnung | keyvalue" class="list-group-item d-flex align-items-center">
                 <span class="badge badge-success badge-pill">{{entry.value}}</span>&nbsp;
                 {{entry.key}}
             </li>
         </ul>
-
+        -->
         
     </div>
 </div>

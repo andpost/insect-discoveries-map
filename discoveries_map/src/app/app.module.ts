@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LightboxModule } from 'ngx-lightbox';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ScriptLoaderService } from 'angular-google-charts';
 
 import { SpeciesPageComponent } from './species-page/species-page.component';
 import { MapPageComponent } from './map-page/map-page.component';
@@ -26,9 +28,10 @@ import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.co
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    LightboxModule
+    LightboxModule,
+    GoogleChartsModule
   ],
-  providers: [],
+  providers: [ScriptLoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

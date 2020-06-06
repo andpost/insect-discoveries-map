@@ -16,6 +16,13 @@ export class IndexPageComponent implements OnInit {
   anzahlFotos : number;
   artenProOrdnung : Map<string, number> = new Map();
 
+  chartType = 'PieChart';
+  chartTitle = "# Arten pro Insektenordnung";
+  chartData = [];
+  chartColumnNames = ['Ordnung', 'Anzahl in %'];
+  chartWidth = 550;
+  chartHeight = 400;
+
   constructor(private dataService: DataService) { 
     this.loadDataAndCreateStatistics();
   }
@@ -66,6 +73,22 @@ export class IndexPageComponent implements OnInit {
     });
 
     this.anzahlOrdnungen = ordnungList.length;
+
+    var anzahlArtenProzent : number;
+
+    this.artenProOrdnung.forEach((anzahl: number, ordnung: string) => {
+      anzahlArtenProzent = anzahl / this.anzahlArten * 100;
+      //console.log(ordnung + " " + anzahlArtenProzent);
+      this.chartData.push([ordnung, anzahlArtenProzent]);
+    });
+
+    /*
+     * Reassign the instance to trigger reloading after data changed.
+     *
+     * https://github.com/FERNman/angular-google-charts/issues/39
+     */
+    this.chartData = Object.assign([], this.chartData)
+
   }
 
 }
