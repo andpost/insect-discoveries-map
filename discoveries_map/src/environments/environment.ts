@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   impressumDataSource: "assets/impressum/data_dev.json",
-  amountCarouselPictures: 9
+  amountCarouselPictures: 9,
+  lastUpdate: "31.07.2020",
+  updateInfo: "Pseudovadonia livida, Rhynchites auratus, Xylocopa violacea"
 };
 
 /*

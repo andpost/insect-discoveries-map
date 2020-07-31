@@ -1,27 +1,32 @@
 <div class="container">
     <div class="jumbotron">
         <h3 class="text-center">Insektenbeobachtungen</h3>
-        <h6 class="text-center text-muted">Letztes Update: 06.06.2020<br /><br /></h6>
-
-        <h5 class="text-center text-muted">Statistiken</h5>
-
-        <p class="text-center">
-            <br />
-            <span class="badge badge-success">{{anzahlArten}}</span> unterschiedliche Arten aus <br />
-            <span class="badge badge-success">{{anzahlOrdnungen}}</span> unterschiedlichen Insektenordnungen wurden beobachtet und bestimmt.
-            <br /><br />
-            Insgesamt <span class="badge badge-success">{{anzahlBeobachtungen}}</span> Beobachtungen zu den Arten sind dokumentiert.
-            <br /><br />
-            Zu <span class="badge badge-success">{{anzahlArtenMitFotos}}</span> Arten sind bis jetzt Fotos gepflegt.
-            <br /><br />
-            Insgesamt sind <span class="badge badge-success">{{anzahlFotos}}</span> Fotos zu allen Beobachtungen gepflegt.
-        </p>
-        <h5 class="text-center text-muted">{{chartTitle}}</h5>
-        <div class="d-flex justify-content-center">
-            <google-chart [type]="chartType" [data]="chartData" [columns]="chartColumnNames" [width]="chartWidth" [height]="chartHeight">
-            </google-chart>
+        <div class="bd-callout bd-callout-info">
+            <h5 class="text-center text-muted">Letztes Update: {{lastUpdate}}<br /></h5>
+            <h5 class="text-center text-muted">Updates für folgende Arten:</h5>
+            <p class="text-center text-muted">{{updateInfo}}</p>
         </div>
+        
+        <div class="bd-callout bd-callout-info">
+            <h5 class="text-center text-muted">Statistiken</h5>
 
+            <p class="text-center">
+                <br />
+                <span class="badge badge-success">{{anzahlArten}}</span> unterschiedliche Arten aus <br />
+                <span class="badge badge-success">{{anzahlOrdnungen}}</span> unterschiedlichen Insektenordnungen wurden beobachtet und bestimmt.
+                <br /><br />
+                Insgesamt <span class="badge badge-success">{{anzahlBeobachtungen}}</span> Beobachtungen zu den Arten sind dokumentiert.
+                <br /><br />
+                Zu <span class="badge badge-success">{{anzahlArtenMitFotos}}</span> Arten sind bis jetzt Fotos gepflegt.
+                <br /><br />
+                Insgesamt sind <span class="badge badge-success">{{anzahlFotos}}</span> Fotos zu allen Beobachtungen gepflegt.
+            </p>
+            <h5 class="text-center text-muted">{{chartTitle}}</h5>
+            <div class="d-flex justify-content-center">
+                <google-chart [type]="chartType" [data]="chartData" [columns]="chartColumnNames" [width]="chartWidth" [height]="chartHeight">
+                </google-chart>
+            </div>
+        </div>
         <!--
         <ul>
             <li *ngFor="let entry of artenProOrdnung | keyvalue" class="list-group-item d-flex align-items-center">

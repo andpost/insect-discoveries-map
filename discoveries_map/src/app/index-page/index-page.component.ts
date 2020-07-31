@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from './../../environments/environment';
 import { DataService } from '../app.dataservice';
 import { Art } from "../art-entity";
 
@@ -16,6 +17,9 @@ export class IndexPageComponent implements OnInit {
   anzahlFotos : number;
   artenProOrdnung : Map<string, number> = new Map();
 
+  lastUpdate : string;
+  updateInfo : string;
+
   chartType = 'PieChart';
   chartTitle = "# Arten pro Insektenordnung";
   chartData = [];
@@ -24,6 +28,9 @@ export class IndexPageComponent implements OnInit {
   chartHeight = 400;
 
   constructor(private dataService: DataService) { 
+    this.lastUpdate = environment.lastUpdate;
+    this.updateInfo = environment.updateInfo;
+
     this.loadDataAndCreateStatistics();
   }
 
