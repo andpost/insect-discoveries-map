@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   impressumDataSource: "assets/impressum/data_dev.json",
-  amountCarouselPictures: 9,
+  amountCarouselPictures: 10,
   updateInfoDataSource: "assets/updateinfo_dev.json"
 };
 

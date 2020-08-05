@@ -5,7 +5,7 @@
             <h5 class="text-center">Letztes Update: {{updateInfo.lastUpdate}}<br /></h5>
             <h5 *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">Neue Arten:</h5>
             <p *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">{{updateInfo.speciesNew}}</p>
-            <h5 *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">Neue Beobachtungen oder Fotos für folgende Arten:</h5>
+            <h5 *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">Neue Fotos für folgende Arten:</h5>
             <p *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">{{updateInfo.speciesChanges}}</p>
         </div>
         
