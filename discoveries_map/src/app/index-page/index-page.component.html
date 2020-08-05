@@ -1,10 +1,12 @@
 <div class="container">
     <div class="jumbotron">
         <h3 class="text-center">Insektenbeobachtungen</h3>
-        <div class="bd-callout bd-callout-info">
-            <h5 class="text-center text-muted">Letztes Update: {{lastUpdate}}<br /></h5>
-            <h5 class="text-center text-muted">Updates für folgende Arten:</h5>
-            <p class="text-center text-muted">{{updateInfo}}</p>
+        <div *ngIf="updateInfo.lastUpdate != null" class="bd-callout bd-callout-info">
+            <h5 class="text-center">Letztes Update: {{updateInfo.lastUpdate}}<br /></h5>
+            <h5 *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">Neue Arten:</h5>
+            <p *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">{{updateInfo.speciesNew}}</p>
+            <h5 *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">Neue Beobachtungen oder Fotos für folgende Arten:</h5>
+            <p *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">{{updateInfo.speciesChanges}}</p>
         </div>
         
         <div class="bd-callout bd-callout-info">

@@ -3,6 +3,7 @@ import { HttpClient } from  "@angular/common/http";
 import { Art } from "./art-entity";
 import { Beobachtung } from "./beobachtung-entity";
 import { Impressum } from "./impressum-entity";
+import { UpdateInfo } from "./updateinfo-entity"
 
 
 @Injectable({
@@ -23,6 +24,10 @@ export class DataService {
 
     getImpressumData(sourcePath : string) {
       return this.http.get<Impressum>(sourcePath);
+    }
+
+    getUpdateInfoData(sourcePath : string) {
+      return this.http.get<UpdateInfo>(sourcePath);
     }
 
     getYearFromDateString(date : string) {
