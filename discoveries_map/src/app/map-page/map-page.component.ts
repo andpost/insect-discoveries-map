@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { environment } from './../../environments/environment';
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
 declare let L;
@@ -31,7 +32,7 @@ export class MapPageComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.listInsektenFunde();
-
+    
     this.markerIcon = {
       icon: L.icon({
         iconUrl: "assets/leaflet/images/marker-icon.png",
@@ -39,7 +40,7 @@ export class MapPageComponent implements OnInit {
       })
     };
 
-    this.htmlEntityMap.set("ß", "&szlig;")
+    this.htmlEntityMap.set("ß", "&szlig;");
   }
 
   ngOnInit() {
@@ -117,7 +118,9 @@ export class MapPageComponent implements OnInit {
       htmlImg = "<img src=\"assets/images/" + insekt.art.artfoto.iconPfad + "\" alt=\"Icon\" class=\"img-thumbnail\" />";
     }
 
-    var htmlArt = "<b>" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</b><br /><i>" + insekt.art.name + "</i><br />" + insekt.art.ordnung;
+    var htmlArt = "<b>"
+    + "<a href=\"" + this.createSpeciesLink(insekt) + "\">" + this.encodeHtmlEntities(insekt.art.nameDeutsch) + "</a>"
+    + "</b><br /><i>" + insekt.art.name + "</i><br />" + insekt.art.ordnung;
 
     var html = "<table><tr><td>" + htmlArt + "</td><td style=\"text-align: right;\">" + htmlImg + "</td></tr>"
       + "<tr><td colspan=\"2\"><i class=\"fa fa-calendar fa-fw\" style=\"color: #999;\"></i> " 
@@ -129,6 +132,22 @@ export class MapPageComponent implements OnInit {
       + "</table>"
 
       return html;
+  }
+
+  /**
+   * Creates a link for a species. Depending on the env config for hash location strategy, a hash gets inserted in the link.
+   * @param beobachtung
+   */
+  createSpeciesLink(beobachtung : Beobachtung) : string {
+    var link = "";
+
+    if (environment.routerUseHash) {
+      link += "#";
+    }
+
+    link += "/arten?art=" + beobachtung.art.name;
+
+    return link;
   }
 
   encodeHtmlEntities(stringToEncode: string) {

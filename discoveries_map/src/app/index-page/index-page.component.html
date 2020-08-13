@@ -1,12 +1,22 @@
 <div class="container">
     <div class="jumbotron">
         <h3 class="text-center">Insektenbeobachtungen</h3>
-        <div *ngIf="updateInfo.lastUpdate != null" class="bd-callout bd-callout-info">
+        <div *ngIf="updateInfo != null && updateInfo.lastUpdate != null" class="bd-callout bd-callout-info">
             <h5 class="text-center">Letztes Update: {{updateInfo.lastUpdate}}<br /></h5>
             <h5 *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">Neue Arten:</h5>
-            <p *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">{{updateInfo.speciesNew}}</p>
+            <p *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">
+                <span *ngFor="let speciesNew of updateInfo.speciesNewList; let i = index">
+                    <a [routerLink]="['/arten']" [queryParams]="{art: speciesNew}">{{speciesNew}}</a>
+                    <span *ngIf="i != updateInfo.speciesNewList.length -1">, </span>
+                </span>
+            </p>
             <h5 *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">Neue Fotos für folgende Arten:</h5>
-            <p *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">{{updateInfo.speciesChanges}}</p>
+            <p *ngIf="updateInfo.speciesChanges != null" class="text-center text-muted">
+                <span *ngFor="let speciesChanged of updateInfo.speciesChangesList; let i = index">
+                    <a [routerLink]="['/arten']" [queryParams]="{art: speciesChanged}">{{speciesChanged}}</a>
+                    <span *ngIf="i != updateInfo.speciesChangesList.length -1">, </span>
+                </span>
+            </p>
         </div>
         
         <div class="bd-callout bd-callout-info">

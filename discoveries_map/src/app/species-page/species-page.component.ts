@@ -7,6 +7,8 @@ import { DataService } from '../app.dataservice';
 import { Artfoto } from '../artfoto-entity';
 import { Lightbox } from 'ngx-lightbox';
 import { ArrayType } from '@angular/compiler';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 @Component({
   providers: [Lightbox],
@@ -23,12 +25,19 @@ export class SpeciesPageComponent implements OnInit {
   artenFunde : Beobachtung[];
   artenFotos : Artfoto[];
   selectedOrdnungen : Map<string, boolean> = new Map();
+  art : string;
 
-  constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer) { 
+  constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer, private route: ActivatedRoute) { 
     this.loadArtList();
   }
 
   ngOnInit() {
+    this.route.queryParams
+    .filter(params => params.art)
+    .subscribe(params => {
+      this.art = params.art;
+    }
+  );
   }
 
   loadArtList() {
@@ -50,6 +59,10 @@ export class SpeciesPageComponent implements OnInit {
     });
 
     this.filteredArten = this.arten;
+
+    if (this.art != null) {
+      this.filterBySearch(this.art);
+    }
   }
 
   showFundeForArt(art: Art) {

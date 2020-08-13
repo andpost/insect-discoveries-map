@@ -36,7 +36,7 @@ export class IndexPageComponent implements OnInit {
   }
 
   setUpdateInfoData(updateInfo : UpdateInfo) {
-    this.updateInfo = updateInfo;
+    this.updateInfo = new UpdateInfo(updateInfo.lastUpdate, updateInfo.speciesNew, updateInfo.speciesChanges);
   }
 
   loadDataAndCreateStatistics() {
