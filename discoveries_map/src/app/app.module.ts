@@ -14,6 +14,7 @@ import { MapPageComponent } from './map-page/map-page.component';
 import { IndexPageComponent } from './index-page/index-page.component';
 import { ImpressumPageComponent } from './impressum-page/impressum-page.component';
 import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.component';
+import { LinksPageComponent } from './links-page/links-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.co
     SpeciesPageComponent,
     IndexPageComponent,
     ImpressumPageComponent,
-    DiscoveriesPageComponent
+    DiscoveriesPageComponent,
+    LinksPageComponent
   ],
   imports: [
     BrowserModule,
