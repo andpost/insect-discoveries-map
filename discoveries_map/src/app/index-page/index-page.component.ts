@@ -26,6 +26,9 @@ export class IndexPageComponent implements OnInit {
   chartColumnNames = ['Ordnung', 'Anzahl in %'];
   chartWidth = 550;
   chartHeight = 400;
+  chartOptions = {
+                   'pieHole' : 0.4
+                 };
 
   constructor(private dataService: DataService) { 
     this.dataService.getUpdateInfoData(environment.updateInfoDataSource).subscribe((data : UpdateInfo) => this.setUpdateInfoData(data)); 
@@ -83,12 +86,8 @@ export class IndexPageComponent implements OnInit {
 
     this.anzahlOrdnungen = ordnungList.length;
 
-    var anzahlArtenProzent : number;
-
     this.artenProOrdnung.forEach((anzahl: number, ordnung: string) => {
-      anzahlArtenProzent = anzahl / this.anzahlArten * 100;
-      //console.log(ordnung + " " + anzahlArtenProzent);
-      this.chartData.push([ordnung, anzahlArtenProzent]);
+      this.chartData.push([ordnung, anzahl]);
     });
 
     /*

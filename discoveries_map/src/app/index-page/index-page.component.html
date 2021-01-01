@@ -35,7 +35,12 @@
             </p>
             <h5 class="text-center text-muted">{{chartTitle}}</h5>
             <div class="d-flex justify-content-center">
-                <google-chart [type]="chartType" [data]="chartData" [columns]="chartColumnNames" [width]="chartWidth" [height]="chartHeight">
+                <google-chart [type]="chartType" 
+                              [data]="chartData" 
+                              [columns]="chartColumnNames" 
+                              [width]="chartWidth" 
+                              [height]="chartHeight"
+                              [options]="chartOptions">
                 </google-chart>
             </div>
         </div>
