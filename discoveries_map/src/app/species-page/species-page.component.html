@@ -67,6 +67,16 @@
                     <span *ngIf="selectedArt.urlSonstige != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlVideo != null" href="{{selectedArt.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
 
+                    <div class="d-flex justify-content-center">
+                        <google-chart [type]="chartType" 
+                                      [data]="chartData" 
+                                      [columns]="chartColumnNames" 
+                                      [width]="chartWidth" 
+                                      [height]="chartHeight"
+                                      [options]="chartOptions">
+                        </google-chart>
+                    </div>
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -76,9 +86,11 @@
                         <tbody>
                           <tr *ngFor="let fund of artenFunde; let j = index">
                             <td>
-                                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>
-                                {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small><br />
-                                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}
+                                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>&nbsp;&nbsp;
+                                {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small>&nbsp;&nbsp;
+                                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}&nbsp;&nbsp;
+                                <i class="fa fa-hashtag fa-fw" style="color: #999;"></i><em>&nbsp;{{fund.anzahl}}</em>&nbsp;&nbsp;
+                                Stadium: {{fund.stadium}}
                             </td>
                           </tr>
                         </tbody>

@@ -11,6 +11,13 @@ import { UpdateInfo } from "./updateinfo-entity"
 }) 
 export class DataService {
 
+    monthNames = [
+      "Jan", "Feb", "Mar",
+      "Apr", "Mai", "Jun", "Jul",
+      "Aug", "Sep", "Okt",
+      "Nov", "Dez"
+    ];
+
     constructor(private http: HttpClient) {
     }
 
@@ -34,14 +41,19 @@ export class DataService {
       return date.split("-")[0];
     }
 
-    formatDateString(date : string) : string {
-      var monthNames = [
-        "Jan", "Feb", "Mar",
-        "Apr", "Mai", "Jun", "Jul",
-        "Aug", "Sep", "Okt",
-        "Nov", "Dez"
-      ];
+    getMonthIndexFromDateString(date : string) {
+      var dateSplit = date.split("-");
   
+      var monthNumber = dateSplit[1];
+  
+      if (monthNumber.startsWith("0")) {
+        monthNumber = monthNumber.charAt(1);
+      }
+
+      return parseInt(monthNumber) -1;
+    }
+
+    formatDateString(date : string) : string {
       var dateSplit = date.split("-");
     
       var day = dateSplit[2];
@@ -55,6 +67,10 @@ export class DataService {
   
       var year = dateSplit[0];
     
-      return day + '. ' + monthNames[monthIndex] + ' ' + year;
+      return day + '. ' + this.getMonthName(monthIndex) + ' ' + year;
+    }
+
+    getMonthName(monthIndex : number) {
+      return this.monthNames[monthIndex];
     }
 }

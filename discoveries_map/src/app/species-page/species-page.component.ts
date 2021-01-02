@@ -27,6 +27,15 @@ export class SpeciesPageComponent implements OnInit {
   selectedOrdnungen : Map<string, boolean> = new Map();
   art : string;
 
+  chartType = 'ColumnChart';
+  chartData = [];
+  chartWidth = 700;
+  chartHeight = 200;
+  chartOptions = {
+    legend: { position: 'top' }
+  };
+  chartColumnNames = ["", "Alttier/Imago", "Larve", "Puppe"];
+
   constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer, private route: ActivatedRoute) { 
     this.loadArtList();
   }
@@ -70,6 +79,18 @@ export class SpeciesPageComponent implements OnInit {
     this.artenFunde = art.beobachtungen;
     this.artenFotos = [];
 
+    this.chartData = [];
+    var beobachtungJeMonatImago = [];
+    var beobachtungJeMonatLarve = [];
+    var beobachtungJeMonatPuppe = [];
+    var length = 12;
+
+    for (var i = 0; i < length; i++) {
+      beobachtungJeMonatImago.push(0);
+      beobachtungJeMonatLarve.push(0);
+      beobachtungJeMonatPuppe.push(0);
+    }
+
     this.artenFunde.forEach(beobachtung => {
       beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
 
@@ -89,8 +110,23 @@ export class SpeciesPageComponent implements OnInit {
           this.artenFotos.push(foto);
         });
       }
+
+      // create stats
+      var monthIdx = this.dataService.getMonthIndexFromDateString(beobachtung.datum);
+
+      if (beobachtung.stadium == "Alttier/Imago") {
+        beobachtungJeMonatImago[monthIdx] += beobachtung.anzahl;
+      } else if (beobachtung.stadium == "Larve") {
+        beobachtungJeMonatLarve[monthIdx] += beobachtung.anzahl;
+      } else if (beobachtung.stadium == "Puppe") {
+        beobachtungJeMonatPuppe[monthIdx] += beobachtung.anzahl;
+      }
+      
     });
-    
+
+    for (var i = 0; i < length; i++) {
+      this.chartData.push([this.dataService.getMonthName(i), beobachtungJeMonatImago[i], beobachtungJeMonatLarve[i], beobachtungJeMonatPuppe[i]]);
+    }
   }
 
   filterSelectedOrdnung(ordnung: string, isSelected: boolean) {
