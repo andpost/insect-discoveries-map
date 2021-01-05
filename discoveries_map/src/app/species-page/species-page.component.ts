@@ -32,9 +32,10 @@ export class SpeciesPageComponent implements OnInit {
   chartWidth = 700;
   chartHeight = 200;
   chartOptions = {
-    legend: { position: 'top' }
+    legend: { position: 'top' },
+    isStacked : true
   };
-  chartColumnNames = ["", "Alttier/Imago", "Larve", "Puppe"];
+  chartColumnNames = ["", "Imago", "Larve", "Puppe"];
 
   constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer, private route: ActivatedRoute) { 
     this.loadArtList();
@@ -74,22 +75,17 @@ export class SpeciesPageComponent implements OnInit {
     }
   }
 
-  showFundeForArt(art: Art) {
+  /**
+   * Show all discoveries incl. thumbnail pictures for the selected species.
+   * 
+   * @param art The selected species.
+   */
+  showDiscoveriesForSpecies(art: Art) {
     this.selectedArt = art;
     this.artenFunde = art.beobachtungen;
     this.artenFotos = [];
 
     this.chartData = [];
-    var beobachtungJeMonatImago = [];
-    var beobachtungJeMonatLarve = [];
-    var beobachtungJeMonatPuppe = [];
-    var length = 12;
-
-    for (var i = 0; i < length; i++) {
-      beobachtungJeMonatImago.push(0);
-      beobachtungJeMonatLarve.push(0);
-      beobachtungJeMonatPuppe.push(0);
-    }
 
     this.artenFunde.forEach(beobachtung => {
       beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
@@ -110,11 +106,37 @@ export class SpeciesPageComponent implements OnInit {
           this.artenFotos.push(foto);
         });
       }
+    });
+  }
 
+  /**
+   * Create phenogram chart data only after button was clicked.
+   * 
+   * When chart data gets created while accordion card is showing, chart legend lables are not showing at second time.
+   * 
+   * @see https://stackoverflow.com/questions/54483778/why-google-charts-missing-legend-text-while-loading-second-time
+   * @param art The selected species.
+   */
+  createPhenogramChartData(art: Art) {
+    this.selectedArt = art;
+
+    this.chartData = [];
+    var beobachtungJeMonatImago = [];
+    var beobachtungJeMonatLarve = [];
+    var beobachtungJeMonatPuppe = [];
+    var length = 12;
+
+    for (var i = 0; i < length; i++) {
+      beobachtungJeMonatImago.push(0);
+      beobachtungJeMonatLarve.push(0);
+      beobachtungJeMonatPuppe.push(0);
+    }
+
+    this.artenFunde.forEach(beobachtung => {
       // create stats
       var monthIdx = this.dataService.getMonthIndexFromDateString(beobachtung.datum);
 
-      if (beobachtung.stadium == "Alttier/Imago") {
+      if (beobachtung.stadium == "Imago") {
         beobachtungJeMonatImago[monthIdx] += beobachtung.anzahl;
       } else if (beobachtung.stadium == "Larve") {
         beobachtungJeMonatLarve[monthIdx] += beobachtung.anzahl;

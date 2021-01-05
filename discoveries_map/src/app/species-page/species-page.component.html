@@ -37,7 +37,7 @@
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
                     <button class="btn btn-link text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
-                    aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="showFundeForArt(art)">
+                    aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="showDiscoveriesForSpecies(art)">
                         <table>
                             <tr>
                                 <td>
@@ -67,8 +67,10 @@
                     <span *ngIf="selectedArt.urlSonstige != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlVideo != null" href="{{selectedArt.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
 
+                    <button type="button" class="btn badge badge-success" (click)="createPhenogramChartData(art)">Zeige Phänogramm</button>
+                    
                     <div class="d-flex justify-content-center">
-                        <google-chart [type]="chartType" 
+                        <google-chart *ngIf="chartData.length != 0" [type]="chartType" 
                                       [data]="chartData" 
                                       [columns]="chartColumnNames" 
                                       [width]="chartWidth" 
@@ -76,7 +78,7 @@
                                       [options]="chartOptions">
                         </google-chart>
                     </div>
-
+                    <br />
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -84,15 +86,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let fund of artenFunde; let j = index">
-                            <td>
-                                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>&nbsp;&nbsp;
-                                {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small>&nbsp;&nbsp;
-                                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}&nbsp;&nbsp;
-                                <i class="fa fa-hashtag fa-fw" style="color: #999;"></i><em>&nbsp;{{fund.anzahl}}</em>&nbsp;&nbsp;
-                                Stadium: {{fund.stadium}}
-                            </td>
-                          </tr>
+                            <tr *ngFor="let fund of artenFunde; let j = index">
+                                <td>
+                                    <i class="fa fa-calendar fa-fw" style="color: #999;"></i>&nbsp;&nbsp;
+                                    {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small>&nbsp;&nbsp;
+                                    <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}&nbsp;&nbsp;
+                                    <i class="fa fa-hashtag fa-fw" style="color: #999;"></i><em>&nbsp;{{fund.anzahl}}</em>&nbsp;&nbsp;
+                                    Stadium: {{fund.stadium}}
+                                </td>
+                            </tr>
+                            <tr>
+                            </tr>
                         </tbody>
                     </table>
                     <img *ngFor="let foto of artenFotos; let i=index" [src]="foto.thumb" (click)="open(i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />
