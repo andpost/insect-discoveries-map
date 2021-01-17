@@ -114,8 +114,8 @@ export class MapPageComponent implements OnInit {
   getMarkerPopupHtml(insekt: Beobachtung) {
     var htmlImg = "";
 
-    if (insekt.art.artfoto != null && insekt.art.artfoto.iconPfad != null) {
-      htmlImg = "<img src=\"assets/images/" + insekt.art.artfoto.iconPfad + "\" alt=\"Icon\" class=\"img-thumbnail\" />";
+    if (insekt.art.artfoto != null && insekt.art.artfoto.src != null) {
+      htmlImg = "<img src=\"assets/images/" + insekt.art.artfoto.src + "\" alt=\"Icon\" class=\"img-thumbnail\" />";
     }
 
     var htmlArt = "<b>"

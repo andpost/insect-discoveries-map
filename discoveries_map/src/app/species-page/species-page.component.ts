@@ -64,6 +64,9 @@ export class SpeciesPageComponent implements OnInit {
       }
 
       if (this.selectedOrdnungen.get(art.ordnung)) {
+        if (art.artfoto != null && art.artfoto.src != null) {
+          art.artfoto.src = "assets/images/" + art.artfoto.src;
+        }
         this.arten.push(art);
       }
     });
