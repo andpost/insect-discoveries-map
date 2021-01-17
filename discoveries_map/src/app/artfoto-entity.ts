@@ -1,9 +1,5 @@
 export interface Artfoto {
 
-    bildPfad : string;
-    
-    thumbnailPfad : string;
-
     iconPfad : string;
 
     altCopyright : string;

@@ -98,8 +98,8 @@ export class SpeciesPageComponent implements OnInit {
             copyRight = foto.altCopyright;
           }
 
-          foto.src = "assets/images/" + foto.bildPfad;
-          foto.thumb = "assets/images/" + foto.thumbnailPfad;
+          foto.src = "assets/images/" + foto.src;
+          foto.thumb = foto.src.replace(".jpg", "_thumb.jpg");
           foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
             this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";
           
