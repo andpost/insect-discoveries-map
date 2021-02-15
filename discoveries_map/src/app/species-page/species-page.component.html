@@ -67,7 +67,7 @@
                     <span *ngIf="selectedArt.urlSonstige != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlVideo != null" href="{{selectedArt.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
 
-                    <button type="button" class="btn badge badge-success" (click)="createPhenogramChartData(art)">Zeige Phänogramm</button>
+                    <button type="button" class="btn badge badge-success" (click)="togglePhenogram(art)">Phänogramm</button>
                     
                     <div class="d-flex justify-content-center">
                         <google-chart *ngIf="chartData.length != 0" [type]="chartType" 

@@ -36,6 +36,7 @@ export class SpeciesPageComponent implements OnInit {
     isStacked : true
   };
   chartColumnNames = ["", "Imago", "Larve", "Puppe"];
+  chartVisible = false;
 
   constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer, private route: ActivatedRoute) { 
     this.loadArtList();
@@ -120,10 +121,17 @@ export class SpeciesPageComponent implements OnInit {
    * @see https://stackoverflow.com/questions/54483778/why-google-charts-missing-legend-text-while-loading-second-time
    * @param art The selected species.
    */
-  createPhenogramChartData(art: Art) {
+  togglePhenogram(art: Art) {
     this.selectedArt = art;
 
     this.chartData = [];
+
+    this.chartVisible = !this.chartVisible;
+
+    if (!this.chartVisible) {
+      return;
+    }
+
     var beobachtungJeMonatImago = [];
     var beobachtungJeMonatLarve = [];
     var beobachtungJeMonatPuppe = [];
