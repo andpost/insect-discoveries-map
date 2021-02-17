@@ -10,6 +10,7 @@ import { DataService } from '../app.dataservice';
 export class DiscoveriesPageComponent implements OnInit {
 
   beobachtungen : Beobachtung[];
+  pageOfBeobachtungen : Beobachtung[];
   fromDate : string;
   toDate : string;
 
@@ -76,6 +77,11 @@ export class DiscoveriesPageComponent implements OnInit {
   filterByToDate(toDate) {
     this.toDate = toDate;
     this.loadDiscoveries();
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfBeobachtungen = pageOfItems;
   }
 
 }
