@@ -22,6 +22,7 @@
     "angular-google-charts": "^1.1.4",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
+    "jw-paginate": "^1.0.4",
     "ngx-lightbox": "^2.1.2",
     "popper": "^1.0.1",
     "rxjs": "~6.4.0",

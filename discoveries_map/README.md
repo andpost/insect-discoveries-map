@@ -27,7 +27,11 @@ See documentation at https://codehandbook.org/use-leaflet-in-angular/
 
 ## Adding Observable support
 
-Run 'npm install rxjs-compat --save' inside project folder.
+Run inside project folder:
+
+```
+'npm install rxjs-compat --save'
+```
 
 ## Adding Ngx-Lightbox
 
@@ -35,6 +39,14 @@ Run 'npm install rxjs-compat --save' inside project folder.
 npm install --save ngx-lightbox
 ```
 See also https://www.npmjs.com/package/ngx-lightbox
+
+## Adding JW-Paginate
+
+```
+npm install jw-paginate
+```
+
+See also https://jasonwatmore.com/post/2019/06/18/angular-8-simple-pagination-example or https://github.com/cornflourblue/jw-angular-pagination
 
 ## Adding Font Awesome
 
