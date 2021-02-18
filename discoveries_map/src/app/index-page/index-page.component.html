@@ -3,6 +3,10 @@
         <h3 class="text-center">Insektenbeobachtungen</h3>
         <div *ngIf="updateInfo != null && updateInfo.lastUpdate != null" class="bd-callout bd-callout-info">
             <h5 class="text-center">Letztes Update: {{updateInfo.lastUpdate}}<br /></h5>
+            <h5 *ngIf="updateInfo.newFeatures != null" class="text-center text-muted">Änderungen:</h5>
+            <p *ngIf="updateInfo.newFeatures != null" class="text-center text-muted">
+                {{updateInfo.newFeatures}}
+            </p>
             <h5 *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">Neue Arten:</h5>
             <p *ngIf="updateInfo.speciesNew != null" class="text-center text-muted">
                 <span *ngFor="let speciesNew of updateInfo.speciesNewList; let i = index">

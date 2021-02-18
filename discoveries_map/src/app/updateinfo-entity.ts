@@ -1,13 +1,15 @@
 export class UpdateInfo {
     lastUpdate : string;
+    newFeatures : string;
     speciesNew : string;
     speciesChanges : string;
 
     speciesNewList = new Array();
     speciesChangesList = new Array();
 
-    constructor(lastUpdate : string, speciesNew : string, speciesChanges : string) {
+    constructor(lastUpdate : string, newFeatures : string, speciesNew : string, speciesChanges : string) {
         this.lastUpdate = lastUpdate;
+        this.newFeatures = newFeatures;
         this.speciesNew = speciesNew;
         this.speciesChanges = speciesChanges;
 
