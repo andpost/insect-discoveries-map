@@ -79,8 +79,12 @@ export class DiscoveriesPageComponent implements OnInit {
     this.loadDiscoveries();
   }
 
+  /**
+   * Update current page of items
+   * 
+   * @param pageOfItems 
+   */
   onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
     this.pageOfBeobachtungen = pageOfItems;
   }
 

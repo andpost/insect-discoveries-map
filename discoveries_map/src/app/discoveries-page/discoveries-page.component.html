@@ -22,21 +22,39 @@
         </div>
     </form>
     <div class="d-flex justify-content-center">
-        <jw-pagination [items]="beobachtungen" [pageSize]=30 (changePage)="onChangePage($event)"></jw-pagination>
+        <jw-pagination [items]="beobachtungen" [pageSize]=20 (changePage)="onChangePage($event)"></jw-pagination>
     </div>
-    <table class="table table-striped">
-        <tbody>
-          <tr *ngFor="let beobachtung of pageOfBeobachtungen; let j = index">
-            <td>
-                <b>{{beobachtung.art.nameDeutsch}}</b>&nbsp;
-                <small class="text-muted"><em>{{beobachtung.art.name}}</em></small><br />
-                <small class="text-muted"><em>{{beobachtung.art.ordnung}}</em></small>
-                <small *ngIf="beobachtung.art.familie != null" class="text-muted"> / {{beobachtung.art.familie}}</small><br />
-                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>
-                {{beobachtung.datumFormattiert}} <small class="text-muted"><em>({{beobachtung.beobachter}})</em></small><br />
-                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{beobachtung.fundort}}
-            </td>
-          </tr>
-        </tbody>
-    </table>
+    <div class="accordion" id="accordionBeobachtungen">
+        <div class="card" *ngFor="let beobachtung of pageOfBeobachtungen; let i = index">
+            <div class="card-header" [attr.id]="'heading' + i">
+                <table>
+                    <tr>
+                        <td>
+                            <img [attr.src]="'assets/images/' + beobachtung.art.artfoto.src" alt="Icon" class="img-thumbnail" />
+                        </td>
+                        <td>
+                            <b>{{beobachtung.art.nameDeutsch}}</b>&nbsp;
+                            <small class="text-muted"><em>{{beobachtung.art.name}}</em></small><br />
+                            <small class="text-muted"><em>{{beobachtung.art.ordnung}}</em></small>
+                            <small *ngIf="beobachtung.art.familie != null" class="text-muted"> / {{beobachtung.art.familie}}</small><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <i class="fa fa-calendar fa-fw" style="color: #999;"></i>
+                            {{beobachtung.datumFormattiert}} <small class="text-muted"><em>({{beobachtung.beobachter}})</em></small><br />
+                            <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{beobachtung.fundort}}<br />
+                            <button class="btn badge badge-success" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
+                                    aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+                                Fotos  
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionBeobachtungen">
+                TODO Zeige Fotos
+            </div>
+        </div>
+    </div>
 </div>
