@@ -22,17 +22,17 @@
         </div>
     </form>
     <div class="d-flex justify-content-center">
-        <jw-pagination [items]="beobachtungen" [pageSize]=20 (changePage)="onChangePage($event)"></jw-pagination>
+        <jw-pagination *ngIf="beobachtungen != null" [items]="beobachtungen" [pageSize]=20 (changePage)="onChangePage($event)"></jw-pagination>
     </div>
     <div class="accordion" id="accordionBeobachtungen">
         <div class="card" *ngFor="let beobachtung of pageOfBeobachtungen; let i = index">
             <div class="card-header" [attr.id]="'heading' + i">
                 <table>
                     <tr>
-                        <td>
+                        <td style="width: 80px;">
                             <img [attr.src]="'assets/images/' + beobachtung.art.artfoto.src" alt="Icon" class="img-thumbnail" />
                         </td>
-                        <td>
+                        <td class="text-left">
                             <b>{{beobachtung.art.nameDeutsch}}</b>&nbsp;
                             <small class="text-muted"><em>{{beobachtung.art.name}}</em></small><br />
                             <small class="text-muted"><em>{{beobachtung.art.ordnung}}</em></small>
@@ -53,7 +53,7 @@
                 </table>
             </div>
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionBeobachtungen">
-                TODO Zeige Fotos
+                <img *ngFor="let foto of beobachtung.fotos; let i=index" [src]="foto.thumb" (click)="open(beobachtung.fotos, i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Lightbox } from 'ngx-lightbox';
+
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
+import { Artfoto } from '../artfoto-entity';
 
 @Component({
   selector: 'app-discoveries-page',
@@ -14,7 +17,7 @@ export class DiscoveriesPageComponent implements OnInit {
   fromDate : string;
   toDate : string;
 
-  constructor(private dataService: DataService) { 
+  constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadDiscoveries();
   }
 
@@ -31,12 +34,12 @@ export class DiscoveriesPageComponent implements OnInit {
     beobachtungen.forEach(beobachtung => {
       if (this.fromDate != null && this.toDate != null) {
         if (beobachtung.datum >= this.fromDate && beobachtung.datum <= this.toDate) {
-          beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
-          this.beobachtungen.push(beobachtung);
+          //beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+          this.beobachtungen.push(this.prepareBeobachtung(beobachtung));
         }
       } else {
-        beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
-        this.beobachtungen.push(beobachtung);
+        //beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+        this.beobachtungen.push(this.prepareBeobachtung(beobachtung));
       }
     });
     
@@ -49,6 +52,26 @@ export class DiscoveriesPageComponent implements OnInit {
     if (this.toDate == null) {
       this.toDate = this.beobachtungen[this.beobachtungen.length-1].datum;
     }
+  }
+
+  prepareBeobachtung(beobachtung : Beobachtung) {
+    beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
+
+    if (beobachtung.fotos != null) {
+      beobachtung.fotos.forEach(foto => {
+        var copyRight = beobachtung.beobachter;
+
+        if (foto.altCopyright != null) {
+          copyRight = foto.altCopyright;
+        }
+
+        foto.src = "assets/images/" + foto.src;
+        foto.thumb = foto.src.replace(".jpg", "_thumb.jpg");
+        foto.caption = beobachtung.art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
+          this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";
+      });
+    }
+    return beobachtung;
   }
 
   sortList(sortorder: string) {
@@ -86,6 +109,25 @@ export class DiscoveriesPageComponent implements OnInit {
    */
   onChangePage(pageOfItems: Array<any>) {
     this.pageOfBeobachtungen = pageOfItems;
+  }
+
+  /**
+   * To use '&copy;' in a title attribute for img tags, we have to convert it - its not converted due to security reasons.
+   * 
+   * @param imgTitle 
+   */
+  convertBackCopyRightEntity(imgTitle: string) {
+    return imgTitle.replace('&copy;', '©');
+  }
+
+  open(fotos : Artfoto[], index: number): void {
+    // open lightbox
+    this.lightbox.open(fotos, index);
+  }
+ 
+  close(): void {
+    // close lightbox programmatically
+    this.lightbox.close();
   }
 
 }
