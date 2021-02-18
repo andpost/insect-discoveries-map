@@ -16,6 +16,7 @@ export class DiscoveriesPageComponent implements OnInit {
   pageOfBeobachtungen : Beobachtung[];
   fromDate : string;
   toDate : string;
+  sortorder = "ASC";
 
   constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadDiscoveries();
@@ -43,7 +44,7 @@ export class DiscoveriesPageComponent implements OnInit {
       }
     });
     
-    this.sortList("ASC");
+    this.sortList(this.sortorder);
     
     // nachdem wir aufsteigend sortiert haben, können wir das Start- und Endedatum ermitteln
     if (this.fromDate == null) {
@@ -74,7 +75,9 @@ export class DiscoveriesPageComponent implements OnInit {
     return beobachtung;
   }
 
-  sortList(sortorder: string) {
+  sortList(order: string) {
+    this.sortorder = order;
+
     this.beobachtungen.sort((a, b) => {
       var result = 0;
 
@@ -84,12 +87,19 @@ export class DiscoveriesPageComponent implements OnInit {
         result = 1;
       }
 
-      if (sortorder == "DESC") {
+      if (this.sortorder == "DESC") {
         result *= -1;
       }
       
       return result;
     });
+
+    /*
+     * Reassign the instance to trigger reloading after data changed.
+     *
+     * https://github.com/FERNman/angular-google-charts/issues/39
+     */
+    this.beobachtungen = Object.assign([], this.beobachtungen)
   }
 
   filterByFromDate(fromDate) {
