@@ -62,6 +62,7 @@
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionArten">
                 <div *ngIf="selectedArt != null && selectedArt.name == art.name" class="card-body">
 
+                    <p *ngIf="selectedArt.notizen != null">{{selectedArt.notizen}}</p>
                     <a *ngIf="selectedArt.urlWikipedia != null" href="{{selectedArt.urlWikipedia}}" class="badge badge-info" target="_blank">Wikipedia</a>
                     <span *ngIf="selectedArt.urlWikipedia != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlInsektenSachsen != null" href="{{selectedArt.urlInsektenSachsen}}" class="badge badge-info" target="_blank">Insekten Sachsen</a>

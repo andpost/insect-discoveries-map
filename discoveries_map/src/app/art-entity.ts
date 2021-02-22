@@ -22,4 +22,6 @@ export interface Art {
     artfoto : Artfoto;
 
     beobachtungen : Beobachtung[];
+
+    notizen : string;
 }
