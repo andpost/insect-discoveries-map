@@ -13,10 +13,10 @@ import { Artfoto } from '../artfoto-entity';
 export class DiscoveriesPageComponent implements OnInit {
 
   beobachtungen : Beobachtung[];
-  pageOfBeobachtungen : Beobachtung[];
+  beobachtungenPerPage : Beobachtung[];
   fromDate : string;
   toDate : string;
-  sortorder = "ASC";
+  sortorder = "DESC";
 
   constructor(private dataService: DataService, private lightbox: Lightbox) { 
     this.loadDiscoveries();
@@ -118,7 +118,7 @@ export class DiscoveriesPageComponent implements OnInit {
    * @param pageOfItems 
    */
   onChangePage(pageOfItems: Array<any>) {
-    this.pageOfBeobachtungen = pageOfItems;
+    this.beobachtungenPerPage = pageOfItems;
   }
 
   /**

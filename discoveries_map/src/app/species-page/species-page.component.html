@@ -32,8 +32,11 @@
     <div class="form-group">
         <input class="form-control form-control-sm" type="text" placeholder="Suche (Artname oder Familie)..." (keyup)="filterBySearch($event.target.value)" value="{{art}}">
     </div>
+    <div class="d-flex justify-content-center">
+        <jw-pagination *ngIf="filteredArten != null" [items]="filteredArten" [pageSize]=20 (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
     <div class="accordion" id="accordionArten">
-        <div class="card" *ngFor="let art of filteredArten; let i = index">
+        <div class="card" *ngFor="let art of filteredArtenPerPage; let i = index">
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
                     <button class="btn btn-link text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"

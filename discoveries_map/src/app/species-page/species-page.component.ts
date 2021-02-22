@@ -21,6 +21,7 @@ export class SpeciesPageComponent implements OnInit {
   ordnungList = [];
   arten : Art[];
   filteredArten : Art[];
+  filteredArtenPerPage : Art[];
   selectedArt : Art;
   artenFunde : Beobachtung[];
   artenFotos : Artfoto[];
@@ -221,5 +222,14 @@ export class SpeciesPageComponent implements OnInit {
    */
   convertBackCopyRightEntity(imgTitle: string) {
     return imgTitle.replace('&copy;', '©');
+  }
+
+  /**
+   * Update current page of items
+   * 
+   * @param pageOfItems 
+   */
+  onChangePage(pageOfItems: Array<any>) {
+    this.filteredArtenPerPage = pageOfItems;
   }
 }

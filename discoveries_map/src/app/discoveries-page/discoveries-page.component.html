@@ -15,8 +15,8 @@
             <div class="col-md-4 mb-3">
                 <label for="inputSortorder">Sortierung</label>
                 <select class="custom-select" id="inputSortorder" (change)="sortList($event.target.value)">
-                    <option value="ASC" selected>Aufsteigend</option>
-                    <option value="DESC">Absteigend</option>
+                    <option value="ASC">Aufsteigend</option>
+                    <option value="DESC" selected>Absteigend</option>
                 </select>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <jw-pagination *ngIf="beobachtungen != null" [items]="beobachtungen" [pageSize]=20 (changePage)="onChangePage($event)"></jw-pagination>
     </div>
     <div class="accordion" id="accordionBeobachtungen">
-        <div class="card" *ngFor="let beobachtung of pageOfBeobachtungen; let i = index">
+        <div class="card" *ngFor="let beobachtung of beobachtungenPerPage; let i = index">
             <div class="card-header" [attr.id]="'heading' + i">
                 <table>
                     <tr>
