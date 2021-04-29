@@ -44,10 +44,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img *ngIf="art.artfoto != null && art.artfoto.src != null" 
-                                        src="{{art.artfoto.src}}" 
+                                    <img *ngIf="art.foto != null && art.foto.src != null" 
+                                        src="{{art.foto.src}}" 
                                         alt="Icon" class="img-thumbnail art-icon" />
-                                    <i *ngIf="art.artfoto == null || art.artfoto.src == null" class="fa fa-image fa-2x"></i>
+                                    <i *ngIf="art.foto == null || art.foto.src == null" class="fa fa-image fa-2x"></i>
                                 </td>
                                 <td>
                                     <b>{{art.nameDeutsch}}</b><small *ngIf="art.familie != null" class="text-muted">&nbsp;({{art.familie}})</small><br />

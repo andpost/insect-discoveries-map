@@ -1,4 +1,4 @@
-export interface Artfoto {
+export interface Foto {
 
     altCopyright : string;
 

@@ -1,5 +1,5 @@
 import { Art } from "./art-entity";
-import { Artfoto } from './artfoto-entity';
+import { Foto } from './foto-entity';
 
 export interface Beobachtung {
 
@@ -23,5 +23,5 @@ export interface Beobachtung {
 
     pruefung: string;
 
-    fotos: Artfoto[];
+    fotos: Foto[];
 }

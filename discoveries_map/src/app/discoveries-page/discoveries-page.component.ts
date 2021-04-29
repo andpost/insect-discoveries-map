@@ -3,7 +3,7 @@ import { Lightbox } from 'ngx-lightbox';
 
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
-import { Artfoto } from '../artfoto-entity';
+import { Foto } from '../foto-entity';
 
 @Component({
   selector: 'app-discoveries-page',
@@ -130,7 +130,7 @@ export class DiscoveriesPageComponent implements OnInit {
     return imgTitle.replace('&copy;', '©');
   }
 
-  open(fotos : Artfoto[], index: number): void {
+  open(fotos : Foto[], index: number): void {
     // open lightbox
     this.lightbox.open(fotos, index);
   }

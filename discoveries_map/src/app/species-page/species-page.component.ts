@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { Art } from "../art-entity";
 import { Beobachtung } from "../beobachtung-entity";
 import { DataService } from '../app.dataservice';
-import { Artfoto } from '../artfoto-entity';
+import { Foto } from '../foto-entity';
 import { Lightbox } from 'ngx-lightbox';
 import { ArrayType } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
@@ -24,7 +24,7 @@ export class SpeciesPageComponent implements OnInit {
   filteredArtenPerPage : Art[];
   selectedArt : Art;
   artenFunde : Beobachtung[];
-  artenFotos : Artfoto[];
+  artenFotos : Foto[];
   selectedOrdnungen : Map<string, boolean> = new Map();
   art : string;
 
@@ -66,8 +66,8 @@ export class SpeciesPageComponent implements OnInit {
       }
 
       if (this.selectedOrdnungen.get(art.ordnung)) {
-        if (art.artfoto != null && art.artfoto.src != null) {
-          art.artfoto.src = "assets/images/" + art.artfoto.src;
+        if (art.foto != null && art.foto.src != null) {
+          art.foto.src = "assets/images/" + art.foto.src;
         }
         this.arten.push(art);
       }
