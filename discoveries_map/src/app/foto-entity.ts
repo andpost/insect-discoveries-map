@@ -4,6 +4,8 @@ export interface Foto {
 
     src : string;
 
+    titel : string;
+
     caption : string;
     
     thumb : string;

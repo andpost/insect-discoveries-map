@@ -6,6 +6,7 @@ import { MapPageComponent } from './map-page/map-page.component';
 import { SpeciesPageComponent } from './species-page/species-page.component';
 import { ImpressumPageComponent } from './impressum-page/impressum-page.component';
 import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.component';
+import { GenusPageComponent } from './genus-page/genus-page.component';
 import { LinksPageComponent } from "./links-page/links-page.component";
 
 
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'arten',
     component: SpeciesPageComponent
+  },
+  {
+    path: 'gattungen',
+    component: GenusPageComponent
   },
   {
     path: 'beobachtungen',

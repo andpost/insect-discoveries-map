@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient } from  "@angular/common/http";
 import { Art } from "./art-entity";
+import { Gattung } from "./gattung-entity";
 import { Beobachtung } from "./beobachtung-entity";
 import { Impressum } from "./impressum-entity";
 import { UpdateInfo } from "./updateinfo-entity"
@@ -27,6 +28,10 @@ export class DataService {
 
     getArten() {
       return this.http.get<Art[]>('assets/arten.json');
+    }
+
+    getGattungen() {
+      return this.http.get<Gattung[]>('assets/gattungen.json');
     }
 
     getImpressumData(sourcePath : string) {

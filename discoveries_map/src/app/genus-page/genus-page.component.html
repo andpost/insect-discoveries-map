@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="container">
+        <h5 class="text-center">Weitere Beobachtungen - nur bis zur Gattung bestimmbar</h5>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-outline-primary btn-sm" data-toggle="collapse" href="#collapseOrdnungFilter" aria-expanded="false" aria-controls="collapseOrdnungFilter">
+            Ordnung filtern
+        </button>
+    </div>
+    <div class="form-group collapse" id="collapseOrdnungFilter">
+        <div class="form-row">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button class="btn btn-light" (click)="selectAllOrdnungen(true)">
+                    Alles
+                </button>
+                <button class="btn btn-light" (click)="selectAllOrdnungen(false)">
+                    Nichts
+                </button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div *ngFor="let entry of selectedOrdnungen | keyvalue" class="custom-control custom-checkbox custom-control-inline">
+                <input *ngIf="entry.value; else elseBlock"
+                type="checkbox" class="custom-control-input" id="{{entry.key}}" 
+                (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)" checked="checked">
+                <ng-template #elseBlock>
+                    <input 
+                    type="checkbox" class="custom-control-input" id="{{entry.key}}" 
+                    (change)="filterSelectedOrdnung($event.target.id, $event.target.checked)">
+                </ng-template>
+                <label class="custom-control-label" for="{{entry.key}}">{{entry.key}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="accordion" id="accordionGattungen">
+        <div class="card" *ngFor="let gattung of gattungen; let i = index">
+            <div class="card-header" [attr.id]="'heading' + i">
+                <table>
+                    <tr>
+                        <td style="width: 80px;">
+                            <img [attr.src]="gattung.icon.src" alt="Icon" class="img-thumbnail" />
+                        </td>
+                        <td class="text-left">
+                            <b>{{gattung.nameDeutsch}}</b>&nbsp;
+                            <small class="text-muted"><em>{{gattung.name}}</em></small><br />
+                            <small class="text-muted"><em>{{gattung.ordnung}}</em></small>
+                            <small *ngIf="gattung.familie != null" class="text-muted"> / {{gattung.familie}}</small><br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="btn badge badge-success" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
+                                    aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+                                Fotos  
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionGattungen">
+                <img *ngFor="let foto of gattung.fotos; let i=index" [src]="foto.thumb" (click)="open(gattung.fotos, i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />
+            </div>
+            <!--
+            -->
+        </div>
+    </div>
+</div>

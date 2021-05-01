@@ -16,6 +16,7 @@ import { ImpressumPageComponent } from './impressum-page/impressum-page.componen
 import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.component';
 import { LinksPageComponent } from './links-page/links-page.component';
 import { JwPaginationComponent } from './pagination/jw-angular-pagination.component';
+import { GenusPageComponent } from './genus-page/genus-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { JwPaginationComponent } from './pagination/jw-angular-pagination.compon
     ImpressumPageComponent,
     DiscoveriesPageComponent,
     LinksPageComponent,
-    JwPaginationComponent
+    JwPaginationComponent,
+    GenusPageComponent
   ],
   imports: [
     BrowserModule,
