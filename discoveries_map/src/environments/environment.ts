@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   routerUseHash: true,
   impressumDataSource: "assets/impressum/data_dev.json",
-  amountCarouselPictures: 10,
+  amountCarouselPictures: 12,
   updateInfoDataSource: "assets/updateinfo_dev.json"
 };
 

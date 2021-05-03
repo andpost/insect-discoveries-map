@@ -41,8 +41,10 @@
                             <img [attr.src]="gattung.icon.src" alt="Icon" class="img-thumbnail" />
                         </td>
                         <td class="text-left">
-                            <b>{{gattung.nameDeutsch}}</b>&nbsp;
-                            <small class="text-muted"><em>{{gattung.name}}</em></small><br />
+                            <b *ngIf="gattung.nameDeutsch != null">{{gattung.nameDeutsch}}&nbsp;</b>
+                            <small *ngIf="gattung.nameDeutsch != null" class="text-muted"><em>{{gattung.name}}</em></small>
+                            <b *ngIf="gattung.nameDeutsch == null">{{gattung.name}}</b>
+                            <br />
                             <small class="text-muted"><em>{{gattung.ordnung}}</em></small>
                             <small *ngIf="gattung.familie != null" class="text-muted"> / {{gattung.familie}}</small><br />
                         </td>
