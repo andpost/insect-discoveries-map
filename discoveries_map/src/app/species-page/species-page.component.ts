@@ -66,7 +66,7 @@ export class SpeciesPageComponent implements OnInit {
       }
 
       if (this.selectedOrdnungen.get(art.ordnung)) {
-        if (art.foto != null && art.foto.src != null) {
+        if (art.foto != null && art.foto.src != null && !art.foto.src.startsWith("assets/images/")) {
           art.foto.src = "assets/images/" + art.foto.src;
         }
         this.arten.push(art);
@@ -103,7 +103,10 @@ export class SpeciesPageComponent implements OnInit {
             copyRight = foto.altCopyright;
           }
 
-          foto.src = "assets/images/" + foto.src;
+          if (!foto.src.startsWith("assets/images/")) {
+            foto.src = "assets/images/" + foto.src;
+          }
+          
           foto.thumb = foto.src.replace(".jpg", "_thumb.jpg");
           foto.caption = art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
             this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";

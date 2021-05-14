@@ -48,7 +48,10 @@ export class GenusPageComponent implements OnInit {
   prepareGattung(gattung : Gattung) {
     if (gattung.fotos != null) {
       gattung.fotos.forEach(foto => {
-        foto.src = "assets/images/" + foto.src;
+        if (!foto.src.startsWith("assets/images/")) {
+          foto.src = "assets/images/" + foto.src;
+        }
+        
         foto.thumb = foto.src.replace(".jpg", "_thumb.jpg");
         foto.caption = foto.titel + " (&copy; " + foto.altCopyright + ")";
       });

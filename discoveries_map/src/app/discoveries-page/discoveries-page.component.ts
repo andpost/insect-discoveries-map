@@ -66,7 +66,10 @@ export class DiscoveriesPageComponent implements OnInit {
           copyRight = foto.altCopyright;
         }
 
-        foto.src = "assets/images/" + foto.src;
+        if (!foto.src.startsWith("assets/images/")) {
+          foto.src = "assets/images/" + foto.src;
+        }
+        
         foto.thumb = foto.src.replace(".jpg", "_thumb.jpg");
         foto.caption = beobachtung.art.nameDeutsch + " - " + beobachtung.fundort + " (&copy; " + 
           this.dataService.getYearFromDateString(beobachtung.datum) + ", " + copyRight + ")";
