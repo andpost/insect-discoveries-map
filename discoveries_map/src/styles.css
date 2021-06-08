@@ -11,3 +11,9 @@
     border: 1px solid #eee;
     border-radius: 3px;
 }
+
+.img-icon {
+    margin-right: 10px; 
+    width: 100px; 
+    height: 100px;
+}
