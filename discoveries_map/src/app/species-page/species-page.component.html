@@ -61,52 +61,7 @@
 
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionArten">
                 <div *ngIf="selectedArt != null" class="card-body">
-
                     <app-species-details [art]="art" ></app-species-details>
-                    <!--
-                    <p *ngIf="selectedArt.notizen != null">{{selectedArt.notizen}}</p>
-                    <a *ngIf="selectedArt.urlWikipedia != null" href="{{selectedArt.urlWikipedia}}" class="badge badge-info" target="_blank">Wikipedia</a>
-                    <span *ngIf="selectedArt.urlWikipedia != null">&nbsp;</span>
-                    <a *ngIf="selectedArt.urlInsektenSachsen != null" href="{{selectedArt.urlInsektenSachsen}}" class="badge badge-info" target="_blank">Insekten Sachsen</a>
-                    <span *ngIf="selectedArt.urlInsektenSachsen != null">&nbsp;</span>
-                    <a *ngIf="selectedArt.urlSonstige != null" href="{{selectedArt.urlSonstige}}" class="badge badge-info" target="_blank">Weitere Infos</a>
-                    <span *ngIf="selectedArt.urlSonstige != null">&nbsp;</span>
-                    <a *ngIf="selectedArt.urlVideo != null" href="{{selectedArt.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
-
-                    <button type="button" class="btn badge badge-success" (click)="togglePhenogram(selectedArt)">Phänogramm</button>
-                    
-                    <div class="d-flex justify-content-center">
-                        <google-chart *ngIf="chartData.length != 0" [type]="chartType" 
-                                      [data]="chartData" 
-                                      [columns]="chartColumnNames" 
-                                      [width]="chartWidth" 
-                                      [height]="chartHeight"
-                                      [options]="chartOptions">
-                        </google-chart>
-                    </div>
-                    <br />
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Beobachtungen</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let fund of artenFunde; let j = index">
-                                <td>
-                                    <i class="fa fa-calendar fa-fw" style="color: #999;"></i>&nbsp;&nbsp;
-                                    {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small>&nbsp;&nbsp;
-                                    <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}&nbsp;&nbsp;
-                                    <i class="fa fa-hashtag fa-fw" style="color: #999;"></i><em>&nbsp;{{fund.anzahl}}</em>&nbsp;&nbsp;
-                                    Stadium: {{fund.stadium}}
-                                </td>
-                            </tr>
-                            <tr>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <img *ngFor="let foto of artenFotos; let i=index" [src]="foto.thumb" (click)="open(i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />
-                    -->
                 </div>
             </div>
         </div>
