@@ -17,6 +17,7 @@ import { DiscoveriesPageComponent } from './discoveries-page/discoveries-page.co
 import { LinksPageComponent } from './links-page/links-page.component';
 import { JwPaginationComponent } from './pagination/jw-angular-pagination.component';
 import { GenusPageComponent } from './genus-page/genus-page.component';
+import { SpeciesDetailsComponent } from './species-details/species-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { GenusPageComponent } from './genus-page/genus-page.component';
     DiscoveriesPageComponent,
     LinksPageComponent,
     JwPaginationComponent,
-    GenusPageComponent
+    GenusPageComponent,
+    SpeciesDetailsComponent
   ],
   imports: [
     BrowserModule,

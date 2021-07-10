@@ -40,7 +40,7 @@
             <div class="card-header" [attr.id]="'heading' + i">
                 <h2 class="mb-0">
                     <button class="btn btn-link text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i"
-                    aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="showDiscoveriesForSpecies(art)">
+                    aria-expanded="true" [attr.aria-controls]="'collapse' + i" (click)="selectedArt = art">
                         <table>
                             <tr>
                                 <td>
@@ -60,8 +60,10 @@
             </div>
 
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionArten">
-                <div *ngIf="selectedArt != null && selectedArt.name == art.name" class="card-body">
+                <div *ngIf="selectedArt != null" class="card-body">
 
+                    <app-species-details [art]="art" ></app-species-details>
+                    <!--
                     <p *ngIf="selectedArt.notizen != null">{{selectedArt.notizen}}</p>
                     <a *ngIf="selectedArt.urlWikipedia != null" href="{{selectedArt.urlWikipedia}}" class="badge badge-info" target="_blank">Wikipedia</a>
                     <span *ngIf="selectedArt.urlWikipedia != null">&nbsp;</span>
@@ -71,7 +73,7 @@
                     <span *ngIf="selectedArt.urlSonstige != null">&nbsp;</span>
                     <a *ngIf="selectedArt.urlVideo != null" href="{{selectedArt.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
 
-                    <button type="button" class="btn badge badge-success" (click)="togglePhenogram(art)">Phänogramm</button>
+                    <button type="button" class="btn badge badge-success" (click)="togglePhenogram(selectedArt)">Phänogramm</button>
                     
                     <div class="d-flex justify-content-center">
                         <google-chart *ngIf="chartData.length != 0" [type]="chartType" 
@@ -104,6 +106,7 @@
                         </tbody>
                     </table>
                     <img *ngFor="let foto of artenFotos; let i=index" [src]="foto.thumb" (click)="open(i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />
+                    -->
                 </div>
             </div>
         </div>

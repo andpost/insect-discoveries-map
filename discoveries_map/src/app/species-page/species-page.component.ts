@@ -28,6 +28,7 @@ export class SpeciesPageComponent implements OnInit {
   selectedOrdnungen : Map<string, boolean> = new Map();
   art : string;
 
+  /*
   chartType = 'ColumnChart';
   chartData = [];
   chartWidth = 700;
@@ -38,6 +39,7 @@ export class SpeciesPageComponent implements OnInit {
   };
   chartColumnNames = ["", "Imago", "Larve", "Puppe"];
   chartVisible = false;
+*/
 
   constructor(private dataService: DataService, private lightbox: Lightbox, private sanitizer: DomSanitizer, private route: ActivatedRoute) { 
     this.loadArtList();
@@ -85,12 +87,12 @@ export class SpeciesPageComponent implements OnInit {
    * 
    * @param art The selected species.
    */
-  showDiscoveriesForSpecies(art: Art) {
+  /*showDiscoveriesForSpecies(art: Art) {
     this.selectedArt = art;
     this.artenFunde = art.beobachtungen;
     this.artenFotos = [];
 
-    this.chartData = [];
+    //this.chartData = [];
 
     this.artenFunde.forEach(beobachtung => {
       beobachtung.datumFormattiert = this.dataService.formatDateString(beobachtung.datum);
@@ -115,7 +117,7 @@ export class SpeciesPageComponent implements OnInit {
         });
       }
     });
-  }
+  }*/
 
   /**
    * Create phenogram chart data only after button was clicked.
@@ -125,6 +127,7 @@ export class SpeciesPageComponent implements OnInit {
    * @see https://stackoverflow.com/questions/54483778/why-google-charts-missing-legend-text-while-loading-second-time
    * @param art The selected species.
    */
+  /*
   togglePhenogram(art: Art) {
     this.selectedArt = art;
 
@@ -165,6 +168,7 @@ export class SpeciesPageComponent implements OnInit {
       this.chartData.push([this.dataService.getMonthName(i), beobachtungJeMonatImago[i], beobachtungJeMonatLarve[i], beobachtungJeMonatPuppe[i]]);
     }
   }
+  */
 
   filterSelectedOrdnung(ordnung: string, isSelected: boolean) {
     this.selectedOrdnungen.set(ordnung, isSelected);
@@ -177,7 +181,7 @@ export class SpeciesPageComponent implements OnInit {
     });
     this.loadArtList();
   }
-
+/*
   open(index: number): void {
     // open lightbox
     this.lightbox.open(this.artenFotos, index);
@@ -187,7 +191,7 @@ export class SpeciesPageComponent implements OnInit {
     // close lightbox programmatically
     this.lightbox.close();
   }
-
+*/
   filterBySearch(search: string) {
     this.filteredArten = [];
 
@@ -223,9 +227,11 @@ export class SpeciesPageComponent implements OnInit {
    * 
    * @param imgTitle 
    */
+  /*
   convertBackCopyRightEntity(imgTitle: string) {
     return imgTitle.replace('&copy;', '©');
   }
+  */
 
   /**
    * Update current page of items
