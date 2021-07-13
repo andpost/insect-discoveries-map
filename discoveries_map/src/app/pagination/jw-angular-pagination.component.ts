@@ -47,7 +47,6 @@ export class JwPaginationComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.items.length);
     // set page if items array isn't empty
     if (this.items && this.items.length) {
       this.setPage(this.initialPage);

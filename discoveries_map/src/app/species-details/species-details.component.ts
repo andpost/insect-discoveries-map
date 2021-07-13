@@ -18,6 +18,7 @@ export class SpeciesDetailsComponent implements OnInit {
   @Input() art : Art;
   @Input() artenFunde : Beobachtung[];
   @Input() artenFotos : Foto[];
+  @Input() index : number;
   
   chartData = [];
   chartType = 'ColumnChart';
@@ -29,11 +30,13 @@ export class SpeciesDetailsComponent implements OnInit {
   };
   chartColumnNames = ["", "Imago", "Larve", "Puppe"];
   chartVisible = false;
+  chartReady = false;
 
   constructor(private dataService: DataService, private lightbox: Lightbox) { }
 
   ngOnInit() {
     this.showDiscoveriesForSpecies(this.art);
+    //this.togglePhenogram(this.art);
   }
 
   showDiscoveriesForSpecies(art: Art) {
@@ -76,7 +79,7 @@ export class SpeciesDetailsComponent implements OnInit {
    * @param art The selected species.
    */
    togglePhenogram(art: Art) {
-
+    this.chartReady = false;
     this.chartData = [];
 
     this.chartVisible = !this.chartVisible;
@@ -113,6 +116,8 @@ export class SpeciesDetailsComponent implements OnInit {
     for (var i = 0; i < length; i++) {
       this.chartData.push([this.dataService.getMonthName(i), beobachtungJeMonatImago[i], beobachtungJeMonatLarve[i], beobachtungJeMonatPuppe[i]]);
     }
+
+    this.chartReady = true;
   }
 
   /**

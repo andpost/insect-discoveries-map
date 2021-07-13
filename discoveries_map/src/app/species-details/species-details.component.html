@@ -5,38 +5,46 @@
 <span *ngIf="art.urlInsektenSachsen != null">&nbsp;</span>
 <a *ngIf="art.urlSonstige != null" href="{{art.urlSonstige}}" class="badge badge-info" target="_blank">Weitere Infos</a>
 <span *ngIf="art.urlSonstige != null">&nbsp;</span>
-<a *ngIf="art.urlVideo != null" href="{{art.urlVideo}}" class="badge badge-success" target="_blank">Video</a><br /><br />
+<a *ngIf="art.urlVideo != null" href="{{art.urlVideo}}" class="badge badge-success" target="_blank">Video</a>
 
-<button type="button" class="btn badge badge-success" (click)="togglePhenogram(art)">Phänogramm</button>
+<br /><br />
 
-<div class="d-flex justify-content-center">
-    <google-chart *ngIf="chartData.length != 0" [type]="chartType" 
-                  [data]="chartData" 
-                  [columns]="chartColumnNames" 
-                  [width]="chartWidth" 
-                  [height]="chartHeight"
-                  [options]="chartOptions">
-    </google-chart>
+<ul class="nav nav-tabs">
+    <li class="nav-item"><a class="nav-link active" [attr.data-target]="'#tab1_' + index" data-toggle="tab">Fotos</a></li>
+    <li class="nav-item"><a class="nav-link" [attr.data-target]="'#tab2_' + index" data-toggle="tab">Beobachtungen</a></li>
+    <li class="nav-item"><a class="nav-link" [attr.data-target]="'#tab3_' + index" data-toggle="tab">Phänogramm</a></li>
+    <li class="nav-item"><a class="nav-link" [attr.data-target]="'#tab4_' + index" data-toggle="tab">Karte</a></li>
+</ul>
+<div class="tab-content">
+    <div [attr.id]="'tab1_' + index" class="tab-pane fade show active">
+        <img *ngFor="let foto of artenFotos; let i=index" [src]="foto.thumb" (click)="open(i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />
+    </div>
+    <div [attr.id]="'tab2_' + index" class="tab-pane fade">
+        <table class="table table-striped">
+            <tr *ngFor="let fund of artenFunde; let j = index">
+                <td>
+                    <i class="fa fa-calendar fa-fw" style="color: #999;"></i>&nbsp;&nbsp;
+                    {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small>&nbsp;&nbsp;
+                    <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}&nbsp;&nbsp;
+                    <i class="fa fa-hashtag fa-fw" style="color: #999;"></i><em>&nbsp;{{fund.anzahl}}</em>&nbsp;&nbsp;
+                    Stadium: {{fund.stadium}}
+                </td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+    </div>
+    <div [attr.id]="'tab3_' + index" class="tab-pane fade">
+        <button type="button" class="btn badge badge-success" (click)="togglePhenogram(art)">Anzeigen</button>
+        <google-chart *ngIf="chartReady" [type]="chartType" 
+            [data]="chartData" 
+            [columns]="chartColumnNames" 
+            [width]="chartWidth" 
+            [height]="chartHeight"
+            [options]="chartOptions">
+        </google-chart>
+    </div>
+    <div [attr.id]="'tab4_' + index" class="tab-pane fade">
+        TODO
+    </div>
 </div>
-<br />
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Beobachtungen</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let fund of artenFunde; let j = index">
-            <td>
-                <i class="fa fa-calendar fa-fw" style="color: #999;"></i>&nbsp;&nbsp;
-                {{fund.datumFormattiert}} <small class="text-muted"><em>({{fund.beobachter}})</em></small>&nbsp;&nbsp;
-                <i class="fa fa-map-marker fa-fw" style="color: #999;"></i>&nbsp;{{fund.fundort}}&nbsp;&nbsp;
-                <i class="fa fa-hashtag fa-fw" style="color: #999;"></i><em>&nbsp;{{fund.anzahl}}</em>&nbsp;&nbsp;
-                Stadium: {{fund.stadium}}
-            </td>
-        </tr>
-        <tr>
-        </tr>
-    </tbody>
-</table>
-<img *ngFor="let foto of artenFotos; let i=index" [src]="foto.thumb" (click)="open(i)" alt="thumbnail" [title]="convertBackCopyRightEntity(foto.caption)" class="img-thumbnail" />

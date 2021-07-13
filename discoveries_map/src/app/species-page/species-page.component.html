@@ -61,7 +61,7 @@
 
             <div [attr.id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#accordionArten">
                 <div *ngIf="selectedArt != null" class="card-body">
-                    <app-species-details [art]="art" ></app-species-details>
+                    <app-species-details [art]="art" [index]="i"></app-species-details>
                 </div>
             </div>
         </div>
